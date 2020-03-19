@@ -6,16 +6,32 @@ public class player : MonoBehaviour
 {
 
 
-    float moveSpeed;
-    // Start is called before the first frame update
+    public Rigidbody rb;
+    public float moveSpeed;
+    Vector3 movement;
+
+
+
     void Start()
     {
         moveSpeed = 10.0f;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        transform.Translate(-moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, - moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0);
+        ProcessInputs();
+        //transform.Translate(-moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, - moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0);
+        Move();
+    }
+
+    private void Move(){
+        rb.velocity = new Vector3(moveSpeed * movement.x, moveSpeed * movement.y, moveSpeed * movement.z);
+    }
+
+    private void ProcessInputs()
+    {
+        movement = new Vector3(Input.GetAxis("Vertical"), 0.0f, - Input.GetAxis("Horizontal"));
+
     }
 }
