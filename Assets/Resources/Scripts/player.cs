@@ -20,6 +20,7 @@ public class player : MonoBehaviour
         moveSpeed = 5.0f;
         jump = new Vector3(0.0f, 2.0f, 0.0f);
         jumpForce = 30.0f;
+        isGrounded = false;
 
     }
 
@@ -28,7 +29,7 @@ public class player : MonoBehaviour
     {
         ProcessInputs();
         Move();
-
+        print("cosa");
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
 
@@ -49,11 +50,13 @@ public class player : MonoBehaviour
     private void ProcessInputs()
     {
         movement = new Vector3(Input.GetAxis("Vertical"), 0.0f, - Input.GetAxis("Horizontal"));
+        print("Vertical: " + Input.GetAxis("Vertical"));
+        print("Horizontal: " + Input.GetAxis("Horizontal"));
 
 
     }
-    
-    
+
+
     private void OnCollisionStay()
     {
         isGrounded = true;
