@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pickableObject : MonoBehaviour
+public class ShaderFocusObject : MonoBehaviour
 {
 
 
@@ -16,7 +16,7 @@ public class pickableObject : MonoBehaviour
 
     void Update()
     {
-        print("Distance from player: " + Vector3.Distance(player.transform.position, gameObject.transform.position));
+        //print("Distance from player: " + Vector3.Distance(player.transform.position, gameObject.transform.position));
         changeProperties();
 
         if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 1.0f)
