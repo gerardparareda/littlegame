@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShaderFocusObject : MonoBehaviour
 {
 
-
+    /*
     public GameObject player;
     bool closePlayer;
 
@@ -17,27 +17,31 @@ public class ShaderFocusObject : MonoBehaviour
     void Update()
     {
         //print("Distance from player: " + Vector3.Distance(player.transform.position, gameObject.transform.position));
-        changeProperties();
+        //changeProperties();
 
         if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 1.0f)
         {
-            //gameObject.GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0.0f);
             closePlayer = true;
         } else
         {
             closePlayer = false;
         }
+        if (!closePlayer)
+            gameObject.GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0.0f);
     }
 
 
-    void changeProperties()
+
+    */
+    // Activate outline if mouse is over
+    private void OnMouseOver()
     {
-        if (closePlayer)
-        {
-            gameObject.GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0.15f);
-        } else
-        {
-            gameObject.GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0.0f);
-        }
+        //if (closePlayer)
+        gameObject.GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0.10f); 
+    }
+
+    private void OnMouseExit()
+    {
+        gameObject.GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0.0f);
     }
 }

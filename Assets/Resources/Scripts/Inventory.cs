@@ -17,17 +17,32 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
+    public delegate void OnItemChanged();
+    public OnItemChanged onItemChangedCallback;
+
+    public int space = 2;
+
     public List<Item> items = new List<Item>();
 
 
-    public void Add(Item item)
+    public bool Add(Item item)
     {
+        if(items.Count >= space)
+        {
+            Debug.Log("Not enough space in inventory");
+            return false;
+        }
         items.Add(item);
+
+        if (onItemChangedCallback != null)
+            onItemChangedCallback.Invoke();
+        return true;
     }
 
     public void Remove (Item item)
     {
         items.Remove(item);
+        if (onItemChangedCallback != null)
+            onItemChangedCallback.Invoke();
     }
-
 }
