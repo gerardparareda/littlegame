@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestItem
   m_EditorClassIdentifier: 
   name: Cube of power
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: ddad60a807121ca4bbf8f8d51e2007a0, type: 3}
