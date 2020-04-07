@@ -24,7 +24,6 @@ public class Interactable : MonoBehaviour
             if (distance <= radius)
             {
                 Interact();
-                //Debug.Log("INTERACT");
             }
         }
     }
