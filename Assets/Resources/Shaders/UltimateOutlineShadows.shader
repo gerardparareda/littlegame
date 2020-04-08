@@ -14,6 +14,8 @@ Shader "Outlined/UltimateOutlineShadows"
 		_SecondOutlineWidth("Outlines width", Range(0.0, 2.0)) = 0.025
 
 		_Angle("Switch shader on angle", Range(0.0, 180.0)) = 89
+
+		_Transparency("Transparency", Range(0.0, 1.0)) = 1
 	}
 
 	CGINCLUDE
@@ -33,6 +35,8 @@ Shader "Outlined/UltimateOutlineShadows"
 	uniform sampler2D _MainTex;
 	uniform float4 _Color;
 	uniform float _Angle;
+
+	uniform float _Transparency;
 
 	ENDCG
 
@@ -122,7 +126,7 @@ Shader "Outlined/UltimateOutlineShadows"
 		}
 
 		//Surface shader
-		Tags{ "Queue" = "Geometry" "RenderType" = "Opaque" }
+		Tags{ "Queue" = "Geometry" "RenderType" = "Cutout" }
 
 		CGPROGRAM
 		#pragma surface surf Lambert fullforwardshadows
@@ -134,7 +138,7 @@ Shader "Outlined/UltimateOutlineShadows"
 		void surf(Input IN, inout SurfaceOutput  o) {
 			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
-			o.Alpha = 1;
+			o.Alpha = _Transparency;
 		}
 		ENDCG
 	}
