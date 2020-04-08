@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 4308917867617648706}
   - component: {fileID: 5086639064956811892}
   - component: {fileID: 1561577183697946253}
+  - component: {fileID: 3464401588486075067}
+  - component: {fileID: 8254714904182132591}
+  - component: {fileID: -5932074150761226247}
   m_Layer: 0
   m_Name: tetrabrick
   m_TagString: Untagged
@@ -81,3 +84,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3464401588486075067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979251583533052497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7874fcabef412c944863527a3517e0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  item: {fileID: 11400000, guid: 42f837d6a398b144f925caa036b8010f, type: 2}
+--- !u!114 &8254714904182132591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979251583533052497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a3513a260de2548bedb1ee8a858131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-5932074150761226247
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979251583533052497}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019653516, y: 0.020729676, z: 0.052987926}
+  m_Center: {x: 0, y: -1.8825095e-16, z: 0.026493963}
