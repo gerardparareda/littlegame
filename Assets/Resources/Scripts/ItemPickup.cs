@@ -11,6 +11,12 @@ public class ItemPickup : Interactable
         PickUp();
     }
 
+    public override void Hit()
+    {
+        base.Hit();
+        //Coses
+    }
+
     void PickUp()
     {
         
@@ -20,4 +26,5 @@ public class ItemPickup : Interactable
             Destroy(gameObject);
         }
     }
+
 }
