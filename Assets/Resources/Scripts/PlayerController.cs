@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public Interactable focus;      // Focused object of player
+    //public Interactable focus;      // Focused object of player
 
 
     public Rigidbody rb;            // RigidBody of player
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         // Move player with velocity
         Move();
 
+
         // Jump code
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -54,11 +55,17 @@ public class PlayerController : MonoBehaviour
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100))
             {
+                
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
-                if (interactable == null)
+                if (interactable != null)
                 {
-                    // remove focus from any object
-                    removeFocus();
+                    float distance = Vector3.Distance(transform.position, interactable.transform.position);
+                    
+                    if(distance < interactable.radius)
+                    {
+                        interactable.Hit();
+                    }
+
                 }
             }
 
@@ -74,35 +81,21 @@ public class PlayerController : MonoBehaviour
             // If the ray hits
             if(Physics.Raycast(ray, out hit, 100))
             {
+                
+                // Get the interactable object
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
+
                 if(interactable != null)
                 {
-                    // focus clicked object
-                    SetFocus(interactable);
+                    float distance = Vector3.Distance(transform.position, interactable.transform.position);
+                    if (distance < interactable.radius)
+                    {
+                        // Interact with object
+                        interactable.Interact();
+                    } 
                 }
             }
-
-        }
-        
-    }
-
-    private void SetFocus(Interactable newFocus)
-    {
-        if (newFocus != focus)
-        {
-            if (focus != null)
-                focus.OnDefocused();
-            focus = newFocus;
-        }
-        newFocus.OnFocused(transform);
-
-    }
-
-    private void removeFocus()
-    {
-        if (focus != null)
-            focus.OnDefocused();
-        focus = null;
+        }      
     }
 
     private void Move(){
