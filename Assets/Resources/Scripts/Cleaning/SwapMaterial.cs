@@ -19,13 +19,15 @@ public class SwapMaterial : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             changeMaterial();
+            Object.FindObjectOfType<CleanHability>().restoreHability();
         }
     }
 
     void OnMouseOver(){
         GetComponent<Renderer>().material = outlineMaterials[currentMaterial];
-        if(Input.GetMouseButtonDown(0)){
+        if(Input.GetMouseButtonDown(0) && Object.FindObjectOfType<CleanHability>().canClean()){
             changeMaterial();
+            Object.FindObjectOfType<CleanHability>().clean();
         }
     }
 

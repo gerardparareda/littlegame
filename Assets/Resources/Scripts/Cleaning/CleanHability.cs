@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CleanHability : MonoBehaviour
 {
+    public int maxCleanedObjects;
+    public int cleanedObjects;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,20 @@ public class CleanHability : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void clean()
+    {
+        cleanedObjects++;
+    }
+
+    public void restoreHability()
+    {
+        cleanedObjects = 0;
+    }
+
+    public bool canClean()
+    {
+        return cleanedObjects < maxCleanedObjects;
     }
 }
