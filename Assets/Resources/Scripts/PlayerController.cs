@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100))
             {
+                
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
             // If the ray hits
             if(Physics.Raycast(ray, out hit, 100))
             {
+                
                 // Get the interactable object
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
 

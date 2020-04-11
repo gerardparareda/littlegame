@@ -45,4 +45,11 @@ public class Inventory : MonoBehaviour
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
     }
+
+    public Item SearchByName (string name)
+    {
+        
+        return items.Find(i => i.name == name);
+    }
+
 }
