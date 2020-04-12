@@ -1528,6 +1528,8 @@ MonoBehaviour:
   player_walk3_r: {fileID: 2800000, guid: 2c2aebd36cbc4e3418d675a5bafe87c6, type: 3}
   player_walk4_r: {fileID: 2800000, guid: b015e539b4c47b64a849b2b3fbbf14cd, type: 3}
   player_walk5_r: {fileID: 2800000, guid: d9b81a7bdb9127744ab5a87930870810, type: 3}
+  player_jump1: {fileID: 2800000, guid: ba254c11f65674e45be6dc51d38e9306, type: 3}
+  player_fall1: {fileID: 2800000, guid: 3eb71c77721d728418e2c4f2c61807e8, type: 3}
 --- !u!1 &132237310 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 23402a769a8ee0b43b60922764511ce8,

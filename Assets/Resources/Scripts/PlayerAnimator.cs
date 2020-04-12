@@ -10,6 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     //Load all needed textures
     public Texture2D player_idle1;
     public Texture2D player_idle2;
+
     public Texture2D player_walk1;
     public Texture2D player_walk2;
     public Texture2D player_walk3;
@@ -22,11 +23,18 @@ public class PlayerAnimator : MonoBehaviour
     public Texture2D player_walk4_r;
     public Texture2D player_walk5_r;
 
+    public Texture2D player_jump1;
+    public Texture2D player_fall1;
+
+
 
     //Create all needed animations from the textures
     Animation player_idle;
     Animation player_walk;
     Animation player_walk_r;
+    Animation player_jump;
+    Animation player_fall;
+
 
     //Select the main current animation
     Animation currentAnimation;
@@ -77,6 +85,56 @@ public class PlayerAnimator : MonoBehaviour
                 }
         );
 
+        player_walk_r = new Animation
+        (
+            playerMat,
+            new AnimationPart[]
+                {
+                    new AnimationPart(player_walk1_r, 70),
+                    new AnimationPart(player_walk2_r, 70),
+                    new AnimationPart(player_walk3_r, 70),
+                    new AnimationPart(player_walk4_r, 70),
+                    new AnimationPart(player_walk5_r, 70)
+
+                }
+        );
+
+        player_walk_r = new Animation
+        (
+            playerMat,
+            new AnimationPart[]
+                {
+                    new AnimationPart(player_walk1_r, 70),
+                    new AnimationPart(player_walk2_r, 70),
+                    new AnimationPart(player_walk3_r, 70),
+                    new AnimationPart(player_walk4_r, 70),
+                    new AnimationPart(player_walk5_r, 70)
+
+                }
+        );
+
+        player_jump = new Animation
+        (
+            playerMat,
+            new AnimationPart[]
+                {
+                    new AnimationPart(player_jump1, 70)
+                    
+                }
+        );
+
+        player_fall = new Animation
+        (
+            playerMat,
+            new AnimationPart[]
+                {
+                    new AnimationPart(player_fall1, 70)
+
+                }
+        );
+
+
+
         //Set current animation
         currentAnimation = player_idle;
 
@@ -96,7 +154,12 @@ public class PlayerAnimator : MonoBehaviour
             case 2:
                 currentAnimation = player_walk_r;
                 break;
-
+            case 3:
+                currentAnimation = player_jump;
+                break;
+            case 4:
+                currentAnimation = player_fall;
+                break;
 
         }
     }

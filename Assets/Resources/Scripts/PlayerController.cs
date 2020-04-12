@@ -132,8 +132,16 @@ public class PlayerController : MonoBehaviour
         if (movement.z > 0)
         {
             animator.setCurrentAnimation(1);
-        } else if (movement.z < 0){
+        } else if (movement.z < 0) {
             animator.setCurrentAnimation(2);
+        }
+        else if (velocity.y > 0)
+        {
+            animator.setCurrentAnimation(3);
+        }
+        else if (velocity.y < 0 && !isGrounded)
+        {
+            animator.setCurrentAnimation(4);
         
         } else
         {
