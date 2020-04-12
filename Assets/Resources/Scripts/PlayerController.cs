@@ -10,22 +10,30 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody rb;            // RigidBody of player
     public float moveSpeed;         // Base movement speed
-    public float jumpForce = 2.0f;  // Jump force
-    public bool isGrounded;         // Used to activate jump or not
+    //public float jumpForce = 2.0f;  // Jump force
     Vector3 movement;               // Horizontal and vertical axis global
     Vector3 jump;                   // Jump direction
     
     
     Camera cam;                     // Main camera
 
+    public float gravity = -9.81f;
+    Vector3 velocity;
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+
+    public float jumpHeight = 3f;
+
+
+    bool isGrounded;         // Used to activate jump or not
+
+
+    public CharacterController controller;
 
 
     void Start()
-    {
-        moveSpeed = 5.0f;
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
-        jumpForce = 30.0f;
-        isGrounded = false;
+    {  
         cam = Camera.main;
     }
 
@@ -35,14 +43,29 @@ public class PlayerController : MonoBehaviour
         // Getting horizontal and vertical axis for movement
         ProcessInputs();
         // Move player with velocity
-        Move();
+        //Move();
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0){
+            velocity.y = -2f;
+        }
+
+        // New movement code
+        Vector3 move = transform.right * movement.x + transform.forward * movement.z;
+        controller.Move(move * moveSpeed * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
 
 
+                
         // Jump code
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            //rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            //isGrounded = false;
         }
 
         // On mouse left click
@@ -65,10 +88,8 @@ public class PlayerController : MonoBehaviour
                     {
                         interactable.Hit();
                     }
-
                 }
             }
-
         }
 
         // On mouse right click
