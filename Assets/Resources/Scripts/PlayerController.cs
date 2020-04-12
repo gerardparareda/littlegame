@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     Vector3 jump;                   // Jump direction
     
     
-    Camera cam;                     // Main camera
+    public Camera cam;                     // Main camera
 
     public float gravity = -9.81f;
     Vector3 velocity;
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {  
-        cam = Camera.main;
+        
     }
 
     
