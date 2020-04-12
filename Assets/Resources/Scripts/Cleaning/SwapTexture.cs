@@ -6,11 +6,18 @@ public class SwapTexture : Interactable
 {
     public Texture[] textures;
     public int currentTexture;
+
+    private Transform particleFX;
+    private ParticleSystem ps;
     
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<Renderer>().material.mainTexture = textures[currentTexture];
+        particleFX = transform.GetChild(0);
+        //particleFX.transform.position = transform.position;
+        ps = particleFX.GetComponent<ParticleSystem>();
+        
     }
 
     // Update is called once per frame
@@ -24,7 +31,12 @@ public class SwapTexture : Interactable
     //Esquerra
     public override void Hit()
     {
+        
+        ps.Stop();
+        ps.Clear();
+        ps.Play();
         changeTexture();
+        
     }
 
     //Dret

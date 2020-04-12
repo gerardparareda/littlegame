@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+
     public float jumpHeight = 3f;
 
 
@@ -31,10 +32,12 @@ public class PlayerController : MonoBehaviour
 
     public CharacterController controller;
 
+    PlayerAnimator animator;
+
 
     void Start()
-    {  
-        
+    {
+        animator = transform.GetChild(0).GetComponent<PlayerAnimator>();
     }
 
     
@@ -42,8 +45,9 @@ public class PlayerController : MonoBehaviour
     {
         // Getting horizontal and vertical axis for movement
         ProcessInputs();
-        // Move player with velocity
-        //Move();
+        Animate();
+
+
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -64,8 +68,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            //rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            //isGrounded = false;
         }
 
         // On mouse left click
@@ -119,21 +121,25 @@ public class PlayerController : MonoBehaviour
         }      
     }
 
-    private void Move(){
-        Vector3 vel = rb.velocity;
-        vel.x = moveSpeed * movement.x;
-        vel.z = moveSpeed * movement.z;
-        rb.velocity = vel;
-    }
     
     private void ProcessInputs()
     {
         movement = new Vector3(Input.GetAxis("Vertical"), 0.0f, - Input.GetAxis("Horizontal"));
     }
 
-
-    private void OnCollisionStay()
+    private void Animate()
     {
-        isGrounded = true;
+        if (movement.z > 0)
+        {
+            animator.setCurrentAnimation(1);
+        } else if (movement.z < 0){
+            animator.setCurrentAnimation(2);
+        
+        } else
+        {
+            animator.setCurrentAnimation(0);
+
+        }
     }
+
 }

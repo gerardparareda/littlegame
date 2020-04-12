@@ -1518,6 +1518,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_idle1: {fileID: 2800000, guid: 972c31eea4509bd4480362303a735ef3, type: 3}
   player_idle2: {fileID: 2800000, guid: 16f890413b8f52642b72a905fe2fc345, type: 3}
+  player_walk1: {fileID: 2800000, guid: 209cbf076252f7e45bac149fdc43c191, type: 3}
+  player_walk2: {fileID: 2800000, guid: 16cd56bbe50ec8e45aebecf8e60be298, type: 3}
+  player_walk3: {fileID: 2800000, guid: 2cca7b4ee0e8ebb40b453a9542a29bff, type: 3}
+  player_walk4: {fileID: 2800000, guid: c1e12b75670e6964cbf843a10d38565b, type: 3}
+  player_walk5: {fileID: 2800000, guid: 20813636191361043b1a2dfa1364156c, type: 3}
+  player_walk1_r: {fileID: 2800000, guid: 23d8c849df98ea54f854db60665d3bd0, type: 3}
+  player_walk2_r: {fileID: 2800000, guid: 52a932969156eaf41b91487e14f0c9c7, type: 3}
+  player_walk3_r: {fileID: 2800000, guid: 2c2aebd36cbc4e3418d675a5bafe87c6, type: 3}
+  player_walk4_r: {fileID: 2800000, guid: b015e539b4c47b64a849b2b3fbbf14cd, type: 3}
+  player_walk5_r: {fileID: 2800000, guid: d9b81a7bdb9127744ab5a87930870810, type: 3}
 --- !u!1 &132237310 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 23402a769a8ee0b43b60922764511ce8,
@@ -14101,6 +14111,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2718539172678688334, guid: 518aa09eadb8d5e4e9d2c78808c4c98c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8.496104
+      objectReference: {fileID: 0}
     - target: {fileID: 5482641230210841289, guid: 518aa09eadb8d5e4e9d2c78808c4c98c,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -21985,10 +22000,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2376472421743612934, guid: 16fa9f74950c5f04ba4a23626386365a,
+        type: 3}
+      propertyPath: particleFX
+      value: 
+      objectReference: {fileID: 821982001254151508, guid: cc98f60702aba9a46b7d458d377d064c,
+        type: 3}
     - target: {fileID: 2376472421743612937, guid: 16fa9f74950c5f04ba4a23626386365a,
         type: 3}
       propertyPath: m_Name
       value: Bassal
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285524412538991833, guid: 16fa9f74950c5f04ba4a23626386365a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16fa9f74950c5f04ba4a23626386365a, type: 3}
