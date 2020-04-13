@@ -26,7 +26,7 @@ public class Quest : MonoBehaviour
         {
             //InventoryController.Instance.GiveItem(ItemReward);
         }*/
-        QuestCounter.numberOfActiveQuest--;
+        QuestCounter.instance.numberOfActiveQuest--;
         Debug.Log("L'enhorabona!");
 
     }
