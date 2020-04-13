@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class QuestUI : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class QuestUI : MonoBehaviour
     public string title;
     public int progress;
     public GameObject questPanel;
-
+    public GameObject questElement;
 
     Text descriptionText, titleText, progressText;
     int dialogueIndex;
@@ -19,10 +20,10 @@ public class QuestUI : MonoBehaviour
 
     void Awake()
     {
-        titleText = questPanel.transform.Find("Title").GetComponent<Text>();
-        descriptionText = questPanel.transform.Find("Description").GetComponent<Text>();
-        progressText = questPanel.transform.Find("Progress").GetComponent<Text>();
-        questPanel.SetActive(false);
+        //titleText = questPanel.transform.Find("QuestUI").GetChild(0).GetComponent<Text>();
+        //descriptionText = questPanel.transform.Find("QuestUI").GetChild(1).GetComponent<Text>();
+        //progressText = questPanel.transform.Find("QuestUI").GetComponent<Text>();
+        questPanel.SetActive(true);
 
         //does instance exists?
         if (Instance != null && Instance != this)
@@ -38,16 +39,38 @@ public class QuestUI : MonoBehaviour
 
     public void AddNewQuest(string title, string description)
     {
-        this.title = title;
-        this.description = description;
-        CreateQuest();
+        GameObject questEl = Instantiate(questElement, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        
+        Text titText = questEl.transform.Find("Title").GetComponent<Text>();
+        titText.text = title;
+        Text descText = questEl.transform.Find("Description").GetComponent<Text>();
+        descText.text = description;
+
+        questEl.transform.SetParent(questPanel.transform);
+        /*this.title = title;
+        this.description = description;*/
+        //CreateQuest();
     }
 
+    public void RemoveQuest (string title)
+    {
+        
+        for (int i = 0; i < questPanel.transform.childCount; i++)
+        {
+            GameObject child = questPanel.transform.GetChild(i).gameObject;
+
+            if (child.transform.Find("Title").GetComponent<Text>().text == title) 
+            {
+                Destroy(child);
+                break;
+            }
+        }
+    }
     public void CreateQuest()
     {
-        titleText.text = title;
-        descriptionText.text = description;
-        questPanel.SetActive(true);
+        //titleText.text = title;
+        //descriptionText.text = description;
+        //questPanel.SetActive(true);
     }
 
     /*public void ContinueDialogue()
