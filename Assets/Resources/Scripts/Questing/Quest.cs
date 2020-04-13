@@ -31,8 +31,12 @@ public class Quest : MonoBehaviour
 
     }
 
+
+    //Elimina els objectes entregats de l'inventari del jugador. 
     public void DeliverObjects ()
     {
+
+        QuestUI.Instance.RemoveQuest(QuestName);
         
         foreach (Goal g in Goals)
         {
