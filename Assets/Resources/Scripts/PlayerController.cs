@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public LayerMask interactableMask;
 
 
     public float jumpHeight = 3f;
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
 
             // If the ray hits
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out hit, 100, interactableMask))
             {
                 
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
