@@ -40,16 +40,18 @@ public class Quest : MonoBehaviour
         
         foreach (Goal g in Goals)
         {
-            Item item = (Inventory.instance.SearchByName(g.ItemID));
-            Debug.Log("hem d eliminar el seguent item" + item.name);
-
-            int a = g.CurrentAmount;
-
-            for (int i = 0; i < a; i++)
+            if (g.GoalType == "CollectionGoal")
             {
-                Inventory.instance.Remove(item);
-            }
-            
+                Item item = (Inventory.instance.SearchByName(g.ItemID));
+                Debug.Log("hem d eliminar el seguent item" + item.name);
+
+                int a = g.CurrentAmount;
+
+                for (int i = 0; i < a; i++)
+                {
+                    Inventory.instance.Remove(item);
+                }
+            }   
         }
         
     }

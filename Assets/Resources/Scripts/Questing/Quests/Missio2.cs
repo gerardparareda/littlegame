@@ -5,8 +5,8 @@ using UnityEngine;
 public class Missio2 : Quest
 {
 
-    public string ItemName = "Cube of power";
-    public string Explanation = "Agafa 1 cub de poder";
+    public string ItemName = "Enemy";
+    public string Explanation = "Mata un enemic";
     public int CurrentAmount = 0;
     public int RequiredAmount = 1;
     // Start is called before the first frame update
@@ -14,10 +14,10 @@ public class Missio2 : Quest
     {
         Debug.Log("missio2");
         QuestName = "Missio2";
-        Description = "Fes coses";
+        Description = "Mata un enemic";
         //ItemReward = "Destral";
 
-        Goals.Add(new CollectionGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));
+        Goals.Add(new KillGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));
         Goals.ForEach(g => g.Init());
     }
 }

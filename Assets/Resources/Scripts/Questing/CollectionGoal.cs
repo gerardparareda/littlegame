@@ -14,6 +14,7 @@ public class CollectionGoal : Goal
         this.Completed = completed;
         this.CurrentAmount = currentAmount;
         this.RequiredAmount = requiredAmount;
+        this.GoalType = "CollectionGoal";
         QuestUI.Instance.AddNewQuest(quest.QuestName, Description);
     }
     
