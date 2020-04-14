@@ -34,7 +34,7 @@ public class QuestGiver : NPC
     void AssignQuest ()
     {
         AssignedQuest = true;
-        QuestCounter.instance.numberOfActiveQuest++;
+        
         Quest = (Quest)quests.AddComponent(System.Type.GetType(questType));
         
     }

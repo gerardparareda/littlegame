@@ -9,7 +9,12 @@ public class EnemyStats : CharacterStats
     public override void Die ()
     {
         base.Die();
-        onEnemyDeath(gameObject.name);
+        if (QuestCounter.instance.numberOfActiveKillGoal != 0)
+        {
+            onEnemyDeath(gameObject.name);
+        }
+
+      
         //Add ragdoll efect
         Destroy(gameObject);
     }

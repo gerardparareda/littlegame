@@ -13,6 +13,7 @@ public class KillGoal : Goal
         this.CurrentAmount = currentAmount;
         this.RequiredAmount = requiredAmount;
         this.GoalType = "KillGoal";
+        QuestCounter.instance.numberOfActiveKillGoal++;
         QuestUI.Instance.AddNewQuest(quest.QuestName, Description);
     }
 
@@ -30,7 +31,7 @@ public class KillGoal : Goal
 
         if (name == this.ItemID)
         {
-            Debug.Log("Detected item pick up" + ItemID);
+            Debug.Log("Detected enemy death" + ItemID);
             this.CurrentAmount++;
             Evaluate();
         }

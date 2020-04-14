@@ -4565,6 +4565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11041e2502c6e024ca11af3366e66d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfActiveKillGoal: 0
+  numberOfActiveCollectionGoal: 0
   numberOfActiveQuest: 0
 --- !u!4 &331658149
 Transform:
@@ -20231,13 +20233,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1515381689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 162ed3b5221e46e479f4790dec58417f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8084e48a9b5b21f4cb689b407f871793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1.5
   dialogue:
-  - Hola
-  name: 
+  - EI
+  - Obtenme dos cubs
+  name: Manelic
+  quests: {fileID: 331658147}
+  questType: CollectionGoalSample
 --- !u!135 &1515381691
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -27270,7 +27275,7 @@ MonoBehaviour:
   - Hi!
   name: Dude
   quests: {fileID: 331658147}
-  questType: Missio2
+  questType: KillGoalSample
 --- !u!135 &2066084764
 SphereCollider:
   m_ObjectHideFlags: 0

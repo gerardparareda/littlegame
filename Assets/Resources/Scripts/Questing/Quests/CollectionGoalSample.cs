@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UltimateSlayer : Quest
+public class CollectionGoalSample : Quest
 {
 
     public string ItemName = "Cube of power";
@@ -15,6 +15,7 @@ public class UltimateSlayer : Quest
         Debug.Log("Ultimate slayer assigned");
         QuestName = "UltimateSlayer";
         Description = "Kill a bunch of stuff";
+        
         //ItemReward = "Destral";
 
         Goals.Add(new CollectionGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));

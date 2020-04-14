@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missio2 : Quest
+public class KillGoalSample : Quest
 {
 
     public string ItemName = "Enemy";
@@ -15,6 +15,7 @@ public class Missio2 : Quest
         Debug.Log("missio2");
         QuestName = "Missio2";
         Description = "Mata un enemic";
+        
         //ItemReward = "Destral";
 
         Goals.Add(new KillGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));

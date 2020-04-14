@@ -5,6 +5,8 @@ using UnityEngine;
 public class QuestCounter : MonoBehaviour
 {
     // Start is called before the first frame update
+    public int numberOfActiveKillGoal = 0;
+    public int numberOfActiveCollectionGoal = 0;
     public int numberOfActiveQuest = 0;
 
     #region Singleton
