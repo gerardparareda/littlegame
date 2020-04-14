@@ -15,6 +15,11 @@ public class QuestGiver : NPC
 
     private Quest Quest { get; set; }
 
+    public string[] afterCompleted;
+    public string[] completedMission;
+    public string[] whileNoCompleted;
+
+
 
     public override void Interact()
     {
@@ -27,7 +32,7 @@ public class QuestGiver : NPC
             CheckQuest();
         } else
         {
-            DialogueSystem.Instance.AddNewDialogue(new string[] { "Thanks for your help that one time" }, name);
+            DialogueSystem.Instance.AddNewDialogue(afterCompleted, name);
         }
     }
 
@@ -48,13 +53,13 @@ public class QuestGiver : NPC
             Quest.DeliverObjects();
             Helped = true;
             AssignedQuest = false;
-            DialogueSystem.Instance.AddNewDialogue(new string[] { "Thanks for that, here´s your reward.", "More dialogue" }, name);
+            DialogueSystem.Instance.AddNewDialogue(completedMission, name);
             //bool itemPickedUp = Inventory.instance.Remove(item);
 
         }
         else
         {
-            DialogueSystem.Instance.AddNewDialogue(new string[] { "Don't worry, I'll wait for you to complete the mission."}, name);
+            DialogueSystem.Instance.AddNewDialogue(whileNoCompleted, name);
         }
     }
 }
