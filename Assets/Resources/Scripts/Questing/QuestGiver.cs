@@ -54,7 +54,7 @@ public class QuestGiver : NPC
         }
         else
         {
-            DialogueSystem.Instance.AddNewDialogue(new string[] { "Don't worry, I'll wait for you to complete the mission.", "More dialogue" }, name);
+            DialogueSystem.Instance.AddNewDialogue(new string[] { "Don't worry, I'll wait for you to complete the mission."}, name);
         }
     }
 }

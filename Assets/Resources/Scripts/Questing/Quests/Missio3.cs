@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KillGoalSample : Quest
+public class Missio3 : Quest
 {
 
-    public string ItemName = "Enemy";
-    public string Explanation = "Mata un enemic";
+    public string ItemName = "Coin";
+    public string Explanation = "Pick up 5 bricks";
     public int CurrentAmount = 0;
     public int RequiredAmount = 1;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("missio2");
-        QuestName = "Missio2";
-        Description = "Mata un enemic";
-        
+        QuestName = "Bricks";
+        Description = "Pick up 5 bricks";
         //ItemReward = "Destral";
 
         Goals.Add(new CollectionGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));
