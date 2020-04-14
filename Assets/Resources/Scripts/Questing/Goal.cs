@@ -11,6 +11,8 @@ public class Goal
     public int CurrentAmount { get; set; }
     public int RequiredAmount { get; set; }
     public string ItemID { get; set; }
+    
+    public string GoalType { get; set; }
     public virtual void Init ()
     {
         //default init stuff
