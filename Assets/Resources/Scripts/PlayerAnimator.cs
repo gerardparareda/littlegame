@@ -15,13 +15,11 @@ public class PlayerAnimator : MonoBehaviour
     public Texture2D player_walk2;
     public Texture2D player_walk3;
     public Texture2D player_walk4;
-    public Texture2D player_walk5;
 
     public Texture2D player_walk1_r;
     public Texture2D player_walk2_r;
     public Texture2D player_walk3_r;
     public Texture2D player_walk4_r;
-    public Texture2D player_walk5_r;
 
     public Texture2D player_jump1;
     public Texture2D player_fall1;
@@ -51,8 +49,8 @@ public class PlayerAnimator : MonoBehaviour
             playerMat, 
             new AnimationPart[] 
                 {
-                    new AnimationPart(player_idle1, 300),
-                    new AnimationPart(player_idle2, 300)
+                    new AnimationPart(player_idle1, 500),
+                    new AnimationPart(player_idle2, 500)
                 } 
         );
 
@@ -65,9 +63,7 @@ public class PlayerAnimator : MonoBehaviour
                     new AnimationPart(player_walk1, 70),
                     new AnimationPart(player_walk2, 70),
                     new AnimationPart(player_walk3, 70),
-                    new AnimationPart(player_walk4, 70),
-                    new AnimationPart(player_walk5, 70)
-
+                    new AnimationPart(player_walk4, 70)
                 }
         );
 
@@ -79,36 +75,7 @@ public class PlayerAnimator : MonoBehaviour
                     new AnimationPart(player_walk1_r, 70),
                     new AnimationPart(player_walk2_r, 70),
                     new AnimationPart(player_walk3_r, 70),
-                    new AnimationPart(player_walk4_r, 70),
-                    new AnimationPart(player_walk5_r, 70)
-
-                }
-        );
-
-        player_walk_r = new Animation
-        (
-            playerMat,
-            new AnimationPart[]
-                {
-                    new AnimationPart(player_walk1_r, 70),
-                    new AnimationPart(player_walk2_r, 70),
-                    new AnimationPart(player_walk3_r, 70),
-                    new AnimationPart(player_walk4_r, 70),
-                    new AnimationPart(player_walk5_r, 70)
-
-                }
-        );
-
-        player_walk_r = new Animation
-        (
-            playerMat,
-            new AnimationPart[]
-                {
-                    new AnimationPart(player_walk1_r, 70),
-                    new AnimationPart(player_walk2_r, 70),
-                    new AnimationPart(player_walk3_r, 70),
-                    new AnimationPart(player_walk4_r, 70),
-                    new AnimationPart(player_walk5_r, 70)
+                    new AnimationPart(player_walk4_r, 70)
 
                 }
         );
