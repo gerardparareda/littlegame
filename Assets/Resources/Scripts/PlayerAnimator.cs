@@ -60,10 +60,10 @@ public class PlayerAnimator : MonoBehaviour
             playerMat,
             new AnimationPart[]
                 {
-                    new AnimationPart(player_walk1, 70),
-                    new AnimationPart(player_walk2, 70),
-                    new AnimationPart(player_walk3, 70),
-                    new AnimationPart(player_walk4, 70)
+                    new AnimationPart(player_walk1, 100),
+                    new AnimationPart(player_walk2, 100),
+                    new AnimationPart(player_walk3, 100),
+                    new AnimationPart(player_walk4, 100)
                 }
         );
 
@@ -72,10 +72,10 @@ public class PlayerAnimator : MonoBehaviour
             playerMat,
             new AnimationPart[]
                 {
-                    new AnimationPart(player_walk1_r, 70),
-                    new AnimationPart(player_walk2_r, 70),
-                    new AnimationPart(player_walk3_r, 70),
-                    new AnimationPart(player_walk4_r, 70)
+                    new AnimationPart(player_walk1_r, 100),
+                    new AnimationPart(player_walk2_r, 100),
+                    new AnimationPart(player_walk3_r, 100),
+                    new AnimationPart(player_walk4_r, 100)
 
                 }
         );

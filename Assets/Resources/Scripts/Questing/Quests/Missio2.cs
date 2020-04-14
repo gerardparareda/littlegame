@@ -17,7 +17,7 @@ public class Missio2 : Quest
         Description = "Fes coses";
         //ItemReward = "Destral";
 
-        Goals.Add(new CollectionGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));
-        Goals.ForEach(g => g.Init());
+        //Goals.Add(new CollectionGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));
+        //Goals.ForEach(g => g.Init());
     }
 }

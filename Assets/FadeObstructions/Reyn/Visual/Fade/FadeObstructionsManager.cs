@@ -46,9 +46,14 @@ public class FadeObstructionsManager : MonoBehaviour
     void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+        }
         else
+        {
             Debug.LogError("There should be only one FadeObstructingObjects component in your scene");
+        }
+
     }
 
     // Camera viewing the object this script is on
