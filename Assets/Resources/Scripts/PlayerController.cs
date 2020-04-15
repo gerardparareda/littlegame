@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
 
             // If the ray hits
-            if(Physics.Raycast(ray, out hit, 100))
+            if(Physics.Raycast(ray, out hit, 100, interactableMask))
             {
                 
                 // Get the interactable object

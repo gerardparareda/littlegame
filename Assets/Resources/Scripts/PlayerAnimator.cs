@@ -15,11 +15,22 @@ public class PlayerAnimator : MonoBehaviour
     public Texture2D player_walk2;
     public Texture2D player_walk3;
     public Texture2D player_walk4;
+    public Texture2D player_walk5;
+    public Texture2D player_walk6;
+    public Texture2D player_walk7;
+    public Texture2D player_walk8;
+    public Texture2D player_walk9;
+
 
     public Texture2D player_walk1_r;
     public Texture2D player_walk2_r;
     public Texture2D player_walk3_r;
     public Texture2D player_walk4_r;
+    public Texture2D player_walk5_r;
+    public Texture2D player_walk6_r;
+    public Texture2D player_walk7_r;
+    public Texture2D player_walk8_r;
+    public Texture2D player_walk9_r;
 
     public Texture2D player_jump1;
     public Texture2D player_fall1;
@@ -63,7 +74,12 @@ public class PlayerAnimator : MonoBehaviour
                     new AnimationPart(player_walk1, 100),
                     new AnimationPart(player_walk2, 100),
                     new AnimationPart(player_walk3, 100),
-                    new AnimationPart(player_walk4, 100)
+                    new AnimationPart(player_walk4, 100),
+                    new AnimationPart(player_walk5, 100),
+                    new AnimationPart(player_walk6, 100),
+                    new AnimationPart(player_walk7, 100),
+                    new AnimationPart(player_walk8, 100),
+                    new AnimationPart(player_walk9, 100)
                 }
         );
 
@@ -75,7 +91,12 @@ public class PlayerAnimator : MonoBehaviour
                     new AnimationPart(player_walk1_r, 100),
                     new AnimationPart(player_walk2_r, 100),
                     new AnimationPart(player_walk3_r, 100),
-                    new AnimationPart(player_walk4_r, 100)
+                    new AnimationPart(player_walk4_r, 100),
+                    new AnimationPart(player_walk5_r, 100),
+                    new AnimationPart(player_walk6_r, 100),
+                    new AnimationPart(player_walk7_r, 100),
+                    new AnimationPart(player_walk8_r, 100),
+                    new AnimationPart(player_walk9_r, 100)
 
                 }
         );

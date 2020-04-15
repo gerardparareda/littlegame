@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3464401588486075067}
   - component: {fileID: 8254714904182132591}
   - component: {fileID: -5932074150761226247}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: tetrabrick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
