@@ -51,7 +51,7 @@ public class Quest : MonoBehaviour
                 {
                     Inventory.instance.Remove(item);
                 }
-            }   
+            }
         }
         
     }
