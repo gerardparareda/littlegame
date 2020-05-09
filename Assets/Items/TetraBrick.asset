@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tetra brick
   icon: {fileID: 21300000, guid: ff63b059d33b38f46989a2591ca93763, type: 3}
+  prefab: {fileID: 979251583533052497, guid: a532c2ed3b82bcd4ea11c327de8553b1, type: 3}

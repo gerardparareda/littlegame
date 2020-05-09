@@ -19,11 +19,18 @@ public class Inventory : MonoBehaviour
 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
+    public bool clickedOption;
 
     public int space = 2;
 
     public List<Item> items = new List<Item>();
 
+    GameManager gameManager;
+
+    void Start()
+    {
+        gameManager = GameManager.instance;
+    }
 
     public bool Add(Item item)
     {
@@ -46,9 +53,16 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
     }
 
+    public void Drop (Item item)
+    {
+        //Spawn
+        Debug.Log("Drop");
+        Instantiate(item.prefab, gameManager.player.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        Remove(item);
+    }
+
     public Item SearchByName (string name)
     {
-        
         return items.Find(i => i.name == name);
     }
 
