@@ -17,11 +17,14 @@ public class Enemy : Interactable
     public override void Interact()
     {
         base.Interact();
+        
+        Debug.Log("He interaccionat amb el bitxo");
         CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
 
         if (playerCombat != null)
         {
             playerCombat.Attack(myStats);
+            Debug.Log(myStats + "He atacat al monstre");
         }
         //Attack enemy
     }
