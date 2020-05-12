@@ -34,11 +34,13 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
 
     PlayerAnimator animator;
+    Transform textureContainer;
 
 
     void Start()
     {
         animator = transform.GetChild(0).GetComponent<PlayerAnimator>();
+        textureContainer = transform.GetChild(0);
     }
 
     
@@ -130,11 +132,21 @@ public class PlayerController : MonoBehaviour
 
     private void Animate()
     {
-        if (movement.z > 0)
+
+        // If movement is to the left flip texture container to the left
+        if (movement.z > 0 && textureContainer.localScale.x > 0)
         {
-            animator.setCurrentAnimation(1);
-        } else if (movement.z < 0) {
+            textureContainer.localScale = new Vector3(textureContainer.localScale.x * -1.0f, textureContainer.localScale.y, textureContainer.localScale.z);
+        }
+        else if (movement.z < 0 && textureContainer.localScale.x < 0)
+        {
+            textureContainer.localScale = new Vector3(textureContainer.localScale.x * -1.0f, textureContainer.localScale.y, textureContainer.localScale.z);
+        }
+        // If movement is left or right
+        if ((movement.z > 0.3f || movement.x > 0.3f || movement.z < -0.3f || movement.x < -0.3f) && isGrounded)
+        {
             animator.setCurrentAnimation(2);
+
         }
         else if (velocity.y > 0)
         {
