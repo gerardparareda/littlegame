@@ -35,9 +35,12 @@ public class PlayerController : MonoBehaviour
 
     PlayerAnimator animator;
 
+    public bool playerEnabled;
+
 
     void Start()
     {
+
         animator = transform.GetChild(0).GetComponent<PlayerAnimator>();
     }
 
@@ -48,78 +51,77 @@ public class PlayerController : MonoBehaviour
         ProcessInputs();
         Animate();
 
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0){
-            velocity.y = -2f;
-        }
-
-        // New movement code
-        Vector3 move = transform.right * movement.x + transform.forward * movement.z;
-        controller.Move(move * moveSpeed * Time.deltaTime);
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
-
-                
-        // Jump code
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
-        // On mouse left click
-        if (Input.GetMouseButtonDown(0))
-        {
-            // Create a ray
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            // If the ray hits
-            if (Physics.Raycast(ray, out hit, 100, interactableMask))
+            if (isGrounded && velocity.y < 0)
             {
-                
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
-                if (interactable != null)
+                velocity.y = -2f;
+            }
+
+            // New movement code
+            Vector3 move = transform.right * movement.x + transform.forward * movement.z;
+            controller.Move(move * moveSpeed * Time.deltaTime);
+
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+
+
+
+            // Jump code
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+
+            // On mouse left click
+            if (Input.GetMouseButtonDown(0))
+            {
+                // Create a ray
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                // If the ray hits
+                if (Physics.Raycast(ray, out hit, 100, interactableMask))
                 {
-                    float distance = Vector3.Distance(transform.position, interactable.transform.position);
-                    
-                    if(distance < interactable.radius)
+
+                    Interactable interactable = hit.collider.GetComponent<Interactable>();
+                    if (interactable != null)
                     {
-                        interactable.Hit();
+                        float distance = Vector3.Distance(transform.position, interactable.transform.position);
+
+                        if (distance < interactable.radius)
+                        {
+                            interactable.Hit();
+                        }
                     }
                 }
             }
-        }
 
-        // On mouse right click
-        if (Input.GetMouseButtonDown(1))
-        {
-            // Create a ray
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            // If the ray hits
-            if(Physics.Raycast(ray, out hit, 100, interactableMask))
+            // On mouse right click
+            if (Input.GetMouseButtonDown(1))
             {
-                
-                // Get the interactable object
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                // Create a ray
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-                if(interactable != null)
+                // If the ray hits
+                if (Physics.Raycast(ray, out hit, 100, interactableMask))
                 {
-                    float distance = Vector3.Distance(transform.position, interactable.transform.position);
-                    if (distance < interactable.radius)
+
+                    // Get the interactable object
+                    Interactable interactable = hit.collider.GetComponent<Interactable>();
+
+                    if (interactable != null)
                     {
-                        // Interact with object
-                        interactable.Interact();
-                    } 
+                        float distance = Vector3.Distance(transform.position, interactable.transform.position);
+                        if (distance < interactable.radius)
+                        {
+                            // Interact with object
+                            interactable.Interact();
+                        }
+                    }
                 }
-            }
-        }      
+            }     
     }
 
     
@@ -150,5 +152,6 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
 
 }

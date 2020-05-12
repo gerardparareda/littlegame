@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyStats : CharacterStats
 {
@@ -18,4 +19,5 @@ public class EnemyStats : CharacterStats
         //Add ragdoll efect
         Destroy(gameObject);
     }
+
 }
