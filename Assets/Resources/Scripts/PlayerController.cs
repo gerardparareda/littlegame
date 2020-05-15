@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public LayerMask interactableMask;
+    public Item usingItem;
 
 
     public float jumpHeight = 3f;
@@ -122,7 +123,10 @@ public class PlayerController : MonoBehaviour
         }      
     }
 
-    
+    public void setUsingItem(Item item)
+    {
+        this.usingItem = item;
+    }
     private void ProcessInputs()
     {
         movement = new Vector3(Input.GetAxis("Vertical"), 0.0f, - Input.GetAxis("Horizontal"));
