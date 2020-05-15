@@ -52,78 +52,76 @@ public class PlayerController : MonoBehaviour
         // Getting horizontal and vertical axis for movement
         ProcessInputs();
         Animate();
+            
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask | interactableMask);
 
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
 
-            if (isGrounded && velocity.y < 0)
+        // Movement code
+        Vector3 move = transform.right * movement.x + transform.forward * movement.z;
+        controller.Move(move * moveSpeed * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        // Jump code
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        // On mouse left click
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Create a ray
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // If the ray hits
+            if (Physics.Raycast(ray, out hit, 100, interactableMask))
             {
-                velocity.y = -2f;
-            }
 
-            // New movement code
-            Vector3 move = transform.right * movement.x + transform.forward * movement.z;
-            controller.Move(move * moveSpeed * Time.deltaTime);
-
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-
-
-
-            // Jump code
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
-
-            // On mouse left click
-            if (Input.GetMouseButtonDown(0))
-            {
-                // Create a ray
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                // If the ray hits
-                if (Physics.Raycast(ray, out hit, 100, interactableMask))
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
                 {
+                    float distance = Vector3.Distance(transform.position, interactable.transform.position);
 
-                    Interactable interactable = hit.collider.GetComponent<Interactable>();
-                    if (interactable != null)
+                    if (distance < interactable.radius)
                     {
-                        float distance = Vector3.Distance(transform.position, interactable.transform.position);
-
-                        if (distance < interactable.radius)
-                        {
-                            interactable.Hit();
-                        }
+                        interactable.Hit();
                     }
                 }
             }
+        }
 
-            // On mouse right click
-            if (Input.GetMouseButtonDown(1))
+        // On mouse right click
+        if (Input.GetMouseButtonDown(1))
+        {
+            // Create a ray
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // If the ray hits
+            if (Physics.Raycast(ray, out hit, 100, interactableMask))
             {
-                // Create a ray
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
 
-                // If the ray hits
-                if (Physics.Raycast(ray, out hit, 100, interactableMask))
+                // Get the interactable object
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+
+                if (interactable != null)
                 {
-
-                    // Get the interactable object
-                    Interactable interactable = hit.collider.GetComponent<Interactable>();
-
-                    if (interactable != null)
+                    float distance = Vector3.Distance(transform.position, interactable.transform.position);
+                    if (distance < interactable.radius)
                     {
-                        float distance = Vector3.Distance(transform.position, interactable.transform.position);
-                        if (distance < interactable.radius)
-                        {
-                            // Interact with object
-                            interactable.Interact();
-                        }
+                        // Interact with object
+                        interactable.Interact();
                     }
                 }
-            }     
+            }
+        }     
     }
 
     
