@@ -47,6 +47,7 @@ public class QuestGiver : NPC
     void CheckQuest ()
     {
         Debug.Log("CheckQuest" + Quest.Completed);
+        Quest.CheckGoals();
         if (Quest.Completed)
         {
             Quest.GiveReward();

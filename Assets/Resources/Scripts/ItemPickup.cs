@@ -28,10 +28,10 @@ public class ItemPickup : Interactable
         if (itemPickedUp) 
         { 
             //Mirem si hi ha un quest actiu. En casa afirmatiu, analitzem el pick up per veure si forma part de la missió.
-            if (QuestCounter.instance.numberOfActiveCollectionGoal != 0)
+            /*if (QuestCounter.instance.numberOfActiveCollectionGoal != 0)
             {
                 onItemPickUp(item);
-            }
+            }*/
             Destroy(gameObject);
         }
     }

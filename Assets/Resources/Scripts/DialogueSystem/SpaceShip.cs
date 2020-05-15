@@ -80,6 +80,7 @@ public class SpaceShip : NPC
     void CheckQuest()
     {
         Debug.Log("CheckQuest" + Quest.Completed);
+        Quest.CheckGoals();
         if (Quest.Completed)
         {
             Quest.DeliverObjects();

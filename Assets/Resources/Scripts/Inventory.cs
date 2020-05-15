@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
@@ -64,6 +65,12 @@ public class Inventory : MonoBehaviour
     public Item SearchByName (string name)
     {
         return items.Find(i => i.name == name);
+    }
+
+    public int CountByName (string name)
+    {
+        
+        return items.Count(i => i.name == name);
     }
 
 }
