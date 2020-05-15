@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     CharacterCombat combat;
+    public Canvas HealthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,14 @@ public class EnemyController : MonoBehaviour
           
             
         }
+        if (Vector3.Distance(target.transform.position, transform.position) < 5) 
+        {
+            HealthBar.enabled = true;
+        } else
+        {
+            HealthBar.enabled = false;
+        }
+        
     }
 
     void FaceTarget ()
