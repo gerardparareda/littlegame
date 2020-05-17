@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Remade.unity
     guid: 84446be91a821444e994704a2165a250
+  - enabled: 1
+    path: Assets/Scenes/Scene2.unity
+    guid: 4edb57f2b6618984aa919073adbaec1d
   m_configObjects: {}

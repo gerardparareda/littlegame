@@ -10,6 +10,7 @@ public class DialogueSystem : MonoBehaviour
     public List<string> dialogueLines;
     public string npcName;
     public GameObject dialoguePanel;
+    public Image npcImage;
 
     Button continueButton;
     Text dialogueText, nameText;
@@ -21,6 +22,7 @@ public class DialogueSystem : MonoBehaviour
         continueButton = dialoguePanel.transform.Find("Continue").GetComponent<Button>();
         dialogueText = dialoguePanel.transform.Find("Text").GetComponent<Text>();
         nameText = dialoguePanel.transform.Find("Name").GetChild(0).GetComponent<Text>();
+        npcImage = dialoguePanel.transform.Find("Image").GetComponent<Image>();
         dialoguePanel.SetActive(false);
 
         continueButton.onClick.AddListener(delegate { ContinueDialogue(); });
@@ -35,13 +37,14 @@ public class DialogueSystem : MonoBehaviour
         }
     }
     
-    public void AddNewDialogue (string[] lines, string npcName)
+    public void AddNewDialogue (string[] lines, string npcName, Sprite npcPicture)
     {
         dialogueIndex = 0;
         dialogueLines = new List<string>(); 
         dialogueLines = new List<string>(lines.Length);
         dialogueLines.AddRange(lines);
         this.npcName = npcName;
+        npcImage.sprite = npcPicture;
         CreateDialogue();
     }
 
@@ -65,5 +68,4 @@ public class DialogueSystem : MonoBehaviour
             dialoguePanel.SetActive(false);
         }
     }
-
 }
