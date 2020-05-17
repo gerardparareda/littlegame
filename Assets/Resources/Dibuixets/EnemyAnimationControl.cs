@@ -25,14 +25,14 @@ public class EnemyAnimationControl : MonoBehaviour
         if (time > 5f & !damaged)
         {
             Debug.Log("TakeDamage!");
-            TakeDamage();
+            AnimDamage();
             damaged = true;
         }
 
         if (time > 7f & !damaged2) 
         {
             Debug.Log("TakeDamage!");
-            TakeDamage();
+            AnimDamage();
             damaged2 = true;
         }
 
@@ -43,15 +43,10 @@ public class EnemyAnimationControl : MonoBehaviour
         }
     }
 
-    public void TakeDamage()
+    public void AnimDamage()
     {
-        //parentAnimator.SetBool("damage", true);
-        //childAnimator.SetBool("d", true);
         childAnimator.SetTrigger("New Trigger");
         parentAnimator.SetTrigger("damage_parent");
-
-        //parentAnimator.SetBool("damage", false);
-        //childAnimator.SetBool("d", false);
     }
 
     public void FallDown()

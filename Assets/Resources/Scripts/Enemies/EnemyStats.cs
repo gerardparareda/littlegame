@@ -7,11 +7,12 @@ public class EnemyStats : CharacterStats
 {
     public delegate void DeathEventHandler(string name);
     public static event DeathEventHandler onEnemyDeath;
-    public EnemyAnimator animator;
+    public EnemyAnimationControl EnemyAnim;
+    
 
     public void Start()
     {
-        animator = GetComponentInChildren<EnemyAnimator>();
+        
     }
     public override void Die ()
     {
@@ -20,7 +21,7 @@ public class EnemyStats : CharacterStats
         {
             onEnemyDeath(gameObject.name);
         }
-
+        EnemyAnim.FallDown();
       
         //Add ragdoll efect
         Destroy(gameObject);
@@ -29,8 +30,9 @@ public class EnemyStats : CharacterStats
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+        EnemyAnim.AnimDamage();
 
-        animator.setCurrentAnimation(2);
+        
     }
 
 }
