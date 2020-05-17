@@ -10,7 +10,9 @@ public class EnemyController : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     CharacterCombat combat;
-    EnemyAnimator enemyAnimator;
+    Animator enemyAnimator;
+    public bool canPlayAnimation = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,6 @@ public class EnemyController : MonoBehaviour
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         combat = GetComponent<CharacterCombat>();
-        enemyAnimator = GetComponentInChildren<EnemyAnimator>();
     }
 
     // Update is called once per frame
@@ -46,15 +47,16 @@ public class EnemyController : MonoBehaviour
 
     void FaceTarget ()
     {
+        //if (animator.isPlaying) return;
         float direction = (target.position.z - transform.position.z);
         if (direction < 0)
         {
             //transform.rotation = Quaternion.Euler(0, 180, 0);
-            enemyAnimator.setCurrentAnimation(1);
+
         } else
         {
             //transform.rotation = Quaternion.Euler(0, 0, 0);
-            enemyAnimator.setCurrentAnimation(0);
+
         }
     }
 

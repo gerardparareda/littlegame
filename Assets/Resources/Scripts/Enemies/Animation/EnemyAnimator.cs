@@ -26,7 +26,7 @@ public class EnemyAnimator : MonoBehaviour
     Animation player_idle_l;
     Animation player_idle_r;
 
-    Animation player_walk;
+    Animation take_damage_anim;
     Animation player_walk_r;
     Animation player_jump;
     Animation player_fall;
@@ -66,17 +66,18 @@ public class EnemyAnimator : MonoBehaviour
             animationParts
         );
 
-        animationParts = new AnimationPart[walk_l1.Length];
-        for (int i = 0; i < walk_l1.Length; i++)
-        {
-            animationParts[i] = new AnimationPart(walk_l1[i], 100);
-        }
+      
 
         animationParts = new AnimationPart[take_damage.Length];
         for (int i = 0; i < take_damage.Length; i++)
         {
             animationParts[i] = new AnimationPart(take_damage[i], 100);
         }
+
+        take_damage_anim = new Animation (
+            playerMat,
+            animationParts
+        );
 
         animationParts = new AnimationPart[fall.Length];
         for (int i = 0; i < fall.Length; i++)
@@ -103,7 +104,8 @@ public class EnemyAnimator : MonoBehaviour
                 currentAnimation = player_idle_r;
                 break;
             case 2:
-                currentAnimation = player_walk_r;
+                currentAnimation = take_damage_anim;
+                Debug.Log("TakeDamage!");
                 break;
             case 3:
                 currentAnimation = player_jump;
@@ -127,6 +129,7 @@ public class EnemyAnimator : MonoBehaviour
         List<AnimationPart> textures;
         int currentFrame;
         float currentTime;
+        //public bool isPlaying;
 
         public Animation(Material playerMat, params AnimationPart[] values)
         {
@@ -138,6 +141,7 @@ public class EnemyAnimator : MonoBehaviour
             }
             currentFrame = 0;
             currentTime = 0;
+            //isPlaying = true;
         }
 
         public void PlayAnimation(float deltaTime)
@@ -150,6 +154,7 @@ public class EnemyAnimator : MonoBehaviour
                 if (currentFrame == textures.Count)
                 {
                     currentFrame = 0;
+                    //isPlaying = false;
                 }
 
                 currentTime = 0;
