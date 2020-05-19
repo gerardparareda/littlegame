@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ public class Inventory : MonoBehaviour
     public OnItemChanged onItemChangedCallback;
     public bool clickedOption;
 
-    public int space = 2;
+    public int space = 12;
 
     public List<Item> items = new List<Item>();
 
