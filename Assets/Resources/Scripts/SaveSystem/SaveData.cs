@@ -12,6 +12,7 @@ public class SaveData
     public int cleanedObjects;
     public float[] playerPosition;
     public GameObject[] questGuivers;
+    public GameObject[] interactableObjects;
 
     // Class constructor, gets all the necessary data ant puts it in the atributes
     public SaveData()
@@ -31,6 +32,8 @@ public class SaveData
         // Get all questgivers through tag
         questGuivers = GameObject.FindGameObjectsWithTag("QuestGiver");
 
+        // Get all interactable objects
+        interactableObjects = GameObject.FindGameObjectsWithTag("Interactable");
 
     }
 
@@ -57,7 +60,6 @@ public class SaveData
         // Questgivers
         // First we get all active questgivers to have the reference then we'll delete them
         GameObject[] oldQuestGivers = GameObject.FindGameObjectsWithTag("QuestGiver");
-
         foreach (GameObject go in questGuivers)
         {
             Object.Instantiate(go);
@@ -66,8 +68,15 @@ public class SaveData
         {
             Object.Destroy(go);
         }
-
-        
+        GameObject[] oldInteractables = GameObject.FindGameObjectsWithTag("Interactable");
+        foreach (GameObject go in oldInteractables)
+        {
+            Object.Destroy(go);
+        }
+        foreach (GameObject go in interactableObjects)
+        {
+            Object.Instantiate(go);
+        }
 
     }
 }
