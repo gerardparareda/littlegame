@@ -9,8 +9,8 @@ public class DialogueSystem : MonoBehaviour
 
     public List<string> dialogueLines;
     public string npcName;
-    public GameObject dialoguePanel;
     public Image npcImage;
+    public GameObject dialoguePanel;
 
     Button continueButton;
     Text dialogueText, nameText;
@@ -68,4 +68,5 @@ public class DialogueSystem : MonoBehaviour
             dialoguePanel.SetActive(false);
         }
     }
+
 }

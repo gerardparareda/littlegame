@@ -1,0 +1,171 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+
+    //public Interactable focus;      // Focused object of player
+
+
+    public Rigidbody rb;            // RigidBody of player
+    public float moveSpeed;         // Base movement speed
+    //public float jumpForce = 2.0f;  // Jump force
+    Vector3 movement;               // Horizontal and vertical axis global
+    Vector3 jump;                   // Jump direction
+    
+    
+    public Camera cam;                     // Main camera
+
+    public float gravity = -9.81f;
+    Vector3 velocity;
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    public LayerMask interactableMask;
+    public Item usingItem;
+
+
+    public float jumpHeight = 3f;
+
+
+    bool isGrounded;         // Used to activate jump or not
+
+
+    public CharacterController controller;
+
+    PlayerAnimator animator;
+    Transform textureContainer;
+
+    public bool playerEnabled;
+
+
+    void Start()
+    {
+
+        animator = transform.GetChild(0).GetComponent<PlayerAnimator>();
+        textureContainer = transform.GetChild(0);
+    }
+
+    
+    void Update()
+    {
+        // Getting horizontal and vertical axis for movement
+        ProcessInputs();
+        Animate();
+            
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask | interactableMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        // Movement code
+        Vector3 move = transform.right * movement.x + transform.forward * movement.z;
+        controller.Move(move * moveSpeed * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        // Jump code
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        // On mouse left click
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Create a ray
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // If the ray hits
+            if (Physics.Raycast(ray, out hit, 100, interactableMask))
+            {
+
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    float distance = Vector3.Distance(transform.position, interactable.transform.position);
+
+                    if (distance < interactable.radius)
+                    {
+                        interactable.Hit();
+                    }
+                }
+            }
+        }
+
+        // On mouse right click
+        if (Input.GetMouseButtonDown(1))
+        {
+            // Create a ray
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // If the ray hits
+            if (Physics.Raycast(ray, out hit, 100, interactableMask))
+            {
+
+                // Get the interactable object
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+
+                if (interactable != null)
+                {
+                    float distance = Vector3.Distance(transform.position, interactable.transform.position);
+                    if (distance < interactable.radius)
+                    {
+                        // Interact with object
+                        interactable.Interact();
+                    }
+                }
+            }
+        }     
+    }
+
+    public void setUsingItem(Item item)
+    {
+        this.usingItem = item;
+    }
+    private void ProcessInputs()
+    {
+        movement = new Vector3(Input.GetAxis("Vertical"), 0.0f, - Input.GetAxis("Horizontal"));
+    }
+
+    private void Animate()
+    {
+
+        // If movement is to the left flip texture container to the left
+        if (movement.z > 0 && textureContainer.localScale.x > 0)
+        {
+            textureContainer.localScale = new Vector3(textureContainer.localScale.x * -1.0f, textureContainer.localScale.y, textureContainer.localScale.z);
+        }
+        else if (movement.z < 0 && textureContainer.localScale.x < 0)
+        {
+            textureContainer.localScale = new Vector3(textureContainer.localScale.x * -1.0f, textureContainer.localScale.y, textureContainer.localScale.z);
+        }
+        // If movement is left or right
+        if ((movement.z > 0.3f || movement.x > 0.3f || movement.z < -0.3f || movement.x < -0.3f) && isGrounded)
+        {
+            animator.setCurrentAnimation(2);
+
+        }
+        else if (velocity.y > 0)
+        {
+            animator.setCurrentAnimation(3);
+        }
+        else if (velocity.y < 0 && !isGrounded)
+        {
+            animator.setCurrentAnimation(4);
+        
+        } else
+        {
+            animator.setCurrentAnimation(0);
+
+        }
+    }
+
+
+}

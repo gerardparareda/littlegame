@@ -9,13 +9,13 @@ public class Desectable : MonoBehaviour, IDeselectHandler, IPointerEnterHandler,
 
     public void GetFocus()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(gameObject);
     }
 
     public void TakeFocus()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        gameObject.SetActive(false);
     }
 
     public void OnDeselect(BaseEventData eventData)

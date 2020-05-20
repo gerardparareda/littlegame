@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -21,16 +22,20 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
     public bool clickedOption;
+    public Slider waterSlider;
 
-    public int space = 2;
+    public int space = 12;
 
     public List<Item> items = new List<Item>();
+    InventorySlot usedSlot;
 
     GameManager gameManager;
+    CleanHability cleanHability;
 
     void Start()
     {
         gameManager = GameManager.instance;
+        cleanHability = gameManager.player.GetComponent<CleanHability>();
     }
 
     public bool Add(Item item)
@@ -54,12 +59,38 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
     }
 
+    public void Use(InventorySlot inventorySlot)
+    {
+        gameManager.player.GetComponent<PlayerController>().setUsingItem(inventorySlot.item);
+        if (usedSlot != null)
+        {
+            usedSlot.DeselectSlot();
+        }
+        usedSlot = inventorySlot;
+
+        if (usedSlot.item.name == "Escombra")
+        {
+            waterSlider.gameObject.SetActive(true);
+            UpdateWaterSlide();
+        }
+        else
+        {
+            waterSlider.gameObject.SetActive(false);
+        }
+    }
+
+    public void UnequipAll()
+    {
+        waterSlider.gameObject.SetActive(false);
+    }
+
     public void Drop (Item item)
     {
         //Spawn
         Debug.Log("Drop");
         Instantiate(item.prefab, gameManager.player.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         Remove(item);
+        UnequipAll();
     }
 
     public Item SearchByName (string name)
@@ -67,10 +98,9 @@ public class Inventory : MonoBehaviour
         return items.Find(i => i.name == name);
     }
 
-    public int CountByName (string name)
+    public void UpdateWaterSlide()
     {
-        
-        return items.Count(i => i.name == name);
+        waterSlider.value = ((cleanHability.maxCleanedObjects - cleanHability.cleanedObjects) / (float)cleanHability.maxCleanedObjects);
     }
 
 }

@@ -8,7 +8,7 @@ public class Missio3 : Quest
     public string ItemName = "Tetra brick";
     public string Explanation = "Pick up 5 bricks";
     public int CurrentAmount = 0;
-    public int RequiredAmount = 3;
+    public int RequiredAmount = 5;
     // Start is called before the first frame update
     void Start()
     {

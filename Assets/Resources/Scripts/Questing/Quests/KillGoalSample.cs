@@ -18,7 +18,7 @@ public class KillGoalSample : Quest
         
         //ItemReward = "Destral";
 
-        Goals.Add(new   KillGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));
+        Goals.Add(new CollectionGoal(this, ItemName, Explanation, false, CurrentAmount, RequiredAmount));
         Goals.ForEach(g => g.Init());
     }
 }

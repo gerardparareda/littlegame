@@ -15,29 +15,8 @@ public class Quest : MonoBehaviour
 
     public void CheckGoals()
     {
-        Debug.Log("He entrat a checkGoals");
-        //Cal modificar això si posem multiples Goals a un quest.
-        foreach (Goal g in Goals)
-        {
-            if (g.GoalType == "CollectionGoal")
-            {
-                int a = Inventory.instance.CountByName(g.ItemID); 
-                
-                if (a >= g.RequiredAmount){
-                    Completed = true;
-                }
-            } else
-            {
-                if (g.Completed == true)
-                {
-                    Completed = true;
-                }
-            }
-            
-        }
-
-        
-        //Completed = Goals.All(g => g.Completed);
+        //landa operation. 
+        Completed = Goals.All(g => g.Completed);
         
     }
 
@@ -66,7 +45,7 @@ public class Quest : MonoBehaviour
                 Item item = (Inventory.instance.SearchByName(g.ItemID));
                 Debug.Log("hem d eliminar el seguent item" + item.name);
 
-                int a = g.RequiredAmount;
+                int a = g.CurrentAmount;
 
                 for (int i = 0; i < a; i++)
                 {
