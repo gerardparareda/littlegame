@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviour
 
     PlayerAnimator animator;
 
+    GameObject hoveredGameObject;
+
+    Ray ray;
+    RaycastHit hit;
 
     void Start()
     {
@@ -48,8 +52,6 @@ public class PlayerController : MonoBehaviour
         // Getting horizontal and vertical axis for movement
         ProcessInputs();
         Animate();
-
-
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -64,7 +66,6 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-
                 
         // Jump code
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -72,12 +73,11 @@ public class PlayerController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+        ray = cam.ScreenPointToRay(Input.mousePosition);
+
         // On mouse left click
         if (Input.GetMouseButtonDown(0))
         {
-            // Create a ray
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100, interactableMask))
@@ -99,12 +99,9 @@ public class PlayerController : MonoBehaviour
         // On mouse right click
         if (Input.GetMouseButtonDown(1))
         {
-            // Create a ray
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
             // If the ray hits
-            if(Physics.Raycast(ray, out hit, 100, interactableMask))
+            if (Physics.Raycast(ray, out hit, 100, interactableMask))
             {
                 
                 // Get the interactable object
@@ -119,8 +116,32 @@ public class PlayerController : MonoBehaviour
                         interactable.Interact();
                     } 
                 }
+
+                
             }
-        }      
+        }
+
+        if (Physics.Raycast(ray, out hit, 100, interactableMask))
+        {
+            if (hit.collider.gameObject.GetComponent<Outline>() != null && hoveredGameObject != hit.collider.gameObject)
+            {
+                if (hoveredGameObject != null)
+                {
+                    hoveredGameObject.GetComponent<Outline>().Deselect();
+                    hoveredGameObject = null;
+                }
+                hoveredGameObject = hit.collider.gameObject;
+                hoveredGameObject.GetComponent<Outline>().Select();
+            }
+        }
+        else
+        {
+            if (hoveredGameObject != null)
+            {
+                hoveredGameObject.GetComponent<Outline>().Deselect();
+                hoveredGameObject = null;
+            }
+        }
     }
 
     public void setUsingItem(Item item)

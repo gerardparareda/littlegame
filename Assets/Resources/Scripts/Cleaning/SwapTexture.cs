@@ -9,7 +9,9 @@ public class SwapTexture : Interactable
 
     private Transform particleFX;
     private ParticleSystem ps;
-    
+
+    GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class SwapTexture : Interactable
         particleFX = transform.GetChild(0);
         //particleFX.transform.position = transform.position;
         ps = particleFX.GetComponent<ParticleSystem>();
-        
+        gameManager = GameManager.instance;
     }
 
     // Update is called once per frame
@@ -31,12 +33,13 @@ public class SwapTexture : Interactable
     //Esquerra
     public override void Hit()
     {
-        
-        ps.Stop();
-        ps.Clear();
-        ps.Play();
-        changeTexture();
-        
+        if (gameManager.player.GetComponent<PlayerController>().usingItem.name == "Escombra")
+        {
+            ps.Stop();
+            ps.Clear();
+            ps.Play();
+            changeTexture();
+        }
     }
 
     //Dret

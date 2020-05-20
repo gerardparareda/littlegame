@@ -28,21 +28,25 @@ public class ItemDestroy : Interactable
     public override void Hit()
     {
         base.Hit();
-        ps.Stop();
-        ps.Clear();
-        ps.Play();
-        Debug.Log("Hitting " + transform.name);
-        Vector3 dir = (transform.position - gameManager.player.transform.position);
+        if (gameManager.player.GetComponent<PlayerController>().usingItem.name == "Martell")
+        {
+            ps.Stop();
+            ps.Clear();
+            ps.Play();
+            Debug.Log("Hitting " + transform.name);
+            Vector3 dir = (transform.position - gameManager.player.transform.position);
 
-        if (life > 1)
-        {
-            GetComponent<Rigidbody>().AddForce(dir.normalized * 5f, ForceMode.VelocityChange);
-            life--;
-        } else if (life == 1)
-        {
-            life--;
-            Instantiate(destroyedVersion, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (life > 1)
+            {
+                GetComponent<Rigidbody>().AddForce(dir.normalized * 5f, ForceMode.VelocityChange);
+                life--;
+            }
+            else if (life == 1)
+            {
+                life--;
+                Instantiate(destroyedVersion, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
     }
 }

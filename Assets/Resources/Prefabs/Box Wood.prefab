@@ -4826,6 +4826,7 @@ GameObject:
   - component: {fileID: -6110947455725193388}
   - component: {fileID: 8348610511117807447}
   - component: {fileID: 211661089323678322}
+  - component: {fileID: 7166254432659362515}
   m_Layer: 0
   m_Name: Box Wood
   m_TagString: Untagged
@@ -4922,8 +4923,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf391770b3946c4793fbe7ac8331e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1.5
+  radius: 3
   life: 0
+  destroyedVersion: {fileID: 0}
 --- !u!54 &211661089323678322
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4940,3 +4942,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7166254432659362515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8807103632714417995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 1, b: 0.10399532, a: 0}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
