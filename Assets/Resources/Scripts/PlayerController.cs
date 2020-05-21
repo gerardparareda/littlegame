@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
 
     public bool playerEnabled;
 
+    //public Animator playerAnimator; // Reference to the unity animator
+    private bool facingLeft = false;
+    public PlayerAnimationController playerAnimController; //Reference to the controller of the animations
+
 
     void Start()
     {
@@ -132,7 +136,7 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(Input.GetAxis("Vertical"), 0.0f, - Input.GetAxis("Horizontal"));
     }
 
-    private void Animate()
+    /*private void Animate()
     {
 
         // If movement is to the left flip texture container to the left
@@ -163,6 +167,86 @@ public class PlayerController : MonoBehaviour
             animator.setCurrentAnimation(0);
 
         }
+    }*/
+
+    private void Animate()
+    {
+
+        //facingLeft = movement.z != 0 ? movement.z > 0 : facingLeft; // Only if moving update facingLeft
+
+        // Update velocity param for animator
+        /*playerAnimator.SetBool("facingLeft", facingLeft);
+        playerAnimator.SetBool("isGrounded", true);
+        playerAnimator.SetBool("isMoving", movement.z != 0);*/
+
+        /*Debug.Log("horizontalVelocity " + movement.z + " ");
+        Debug.Log("facingLeft " + facingLeft + " ");
+        Debug.Log("isGrounded " + isGrounded + " ");
+        Debug.Log("isStopped " + movement.z == 0 + " ");*/
+
+        /*if (velocity.z != 0)
+        {
+            if (animState != 2)
+            {
+                playerAnimator.SetTrigger("movingLeft");
+                animState = 2;
+            }
+            if (animState != 3)
+            {
+                playerAnimator.SetTrigger("movingLeft");
+                animState = 3;
+            }
+        }
+
+        if (velocity.x != 0)
+        {
+
+        }
+
+        if (isGrounded && facingLeft)
+        {
+            playerAnimator.SetTrigger("idleLeft");
+            animState = 0;
+        }
+        if (isGrounded && !facingLeft)
+        {
+            playerAnimator.SetTrigger("idleRight");
+            animState = 1;
+        }*/
+
+        /*isGrounded = true;
+        //Debug.Log("Velocity: " + movement);
+        if (isGrounded) {
+            if (movement.z != 0 | movement.x != 0)
+            {
+                playerAnimController.SetFacingLeft(movement.z != 0 ? movement.z > 0 : playerAnimController.isFacingLeft());
+                playerAnimController.WalkAnimation();
+                //Debug.Log("Moving");
+            } else
+            {
+                playerAnimController.IdleAnimation();
+                //Debug.Log("Idle");
+            }
+        }
+        if (!isGrounded) playerAnimController.JumpAnimation();*/
+
+        //isGrounded = true;
+        //Debug.Log("Velocity: " + movement);
+        if (isGrounded)
+        {
+            if (velocity.z != 0 | velocity.x != 0)
+            {
+                playerAnimController.SetFacingLeft(velocity.z != 0 ? velocity.z > 0 : playerAnimController.isFacingLeft());
+                playerAnimController.WalkAnimation();
+                //Debug.Log("Moving");
+            }
+            else
+            {
+                playerAnimController.IdleAnimation();
+                //Debug.Log("Idle");
+            }
+        }
+        if (!isGrounded) playerAnimController.JumpAnimation();
     }
 
 
