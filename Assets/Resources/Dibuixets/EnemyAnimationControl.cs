@@ -48,6 +48,20 @@ public class EnemyAnimationControl : MonoBehaviour
         }
     }*/
 
+    public void SetFacingLeft(bool isFacingLeft)
+    {
+        if (facingLeft != isFacingLeft)
+        {
+            facingLeft = isFacingLeft;
+            UpdateFacing();
+        }
+    }
+
+    public void UpdateFacing()
+    {
+        //TODO
+    }
+
     public void AnimDamage()
     {
         if (enemyState == PlayerState.takingDamage) return;
@@ -75,6 +89,6 @@ public class EnemyAnimationControl : MonoBehaviour
     {
         if (enemyState == PlayerState.attacking) return;
         childAnimator.SetTrigger("kick");
-        enemyState = PlayerState.attacking;
+        //enemyState = PlayerState.attacking;
     }
 }

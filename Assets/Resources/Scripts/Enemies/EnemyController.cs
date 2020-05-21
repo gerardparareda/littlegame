@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     Animator enemyAnimator;
     public bool canPlayAnimation = true;
 
+    public EnemyAnimationControl enemyAnimationController;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,7 @@ public class EnemyController : MonoBehaviour
             if (targetStats != null)
             {
                 combat.Attack(targetStats);
+                enemyAnimationController.AnimKick();
             }
           
             
@@ -52,11 +55,11 @@ public class EnemyController : MonoBehaviour
         if (direction < 0)
         {
             //transform.rotation = Quaternion.Euler(0, 180, 0);
-
+            enemyAnimationController.SetFacingLeft(true);
         } else
         {
             //transform.rotation = Quaternion.Euler(0, 0, 0);
-
+            enemyAnimationController.SetFacingLeft(false);
         }
     }
 
