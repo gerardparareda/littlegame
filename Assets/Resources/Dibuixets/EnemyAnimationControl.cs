@@ -54,11 +54,13 @@ public class EnemyAnimationControl : MonoBehaviour
         {
             facingLeft = isFacingLeft;
             UpdateFacing();
+            Debug.Log("Changed Facing");
         }
     }
 
     public void UpdateFacing()
     {
+        gameObject.transform.localScale = new Vector3(-gameObject.transform.localScale.x, 1, 1);
         //TODO
     }
 
@@ -84,7 +86,15 @@ public class EnemyAnimationControl : MonoBehaviour
         enemyState = PlayerState.walking;
 
     }
-     
+
+    public void AnimIdle()
+    {
+        if (enemyState == PlayerState.idle) return;
+        childAnimator.SetTrigger("idle");
+        enemyState = PlayerState.idle;
+
+    }
+
     public void AnimKick()
     {
         if (enemyState == PlayerState.attacking) return;

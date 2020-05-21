@@ -32,6 +32,10 @@ public class EnemyController : MonoBehaviour
         {
             agent.SetDestination(target.position);
             FaceTarget();
+            if(!agent.velocity.Equals(new Vector3(0, 0, 0))) enemyAnimationController.AnimWalk();
+        } else
+        {
+            enemyAnimationController.AnimIdle();
         }
         
         if (distance <= agent.stoppingDistance)
@@ -56,7 +60,7 @@ public class EnemyController : MonoBehaviour
         {
             //transform.rotation = Quaternion.Euler(0, 180, 0);
             enemyAnimationController.SetFacingLeft(true);
-        } else
+        } else if (direction > 0)
         {
             //transform.rotation = Quaternion.Euler(0, 0, 0);
             enemyAnimationController.SetFacingLeft(false);
