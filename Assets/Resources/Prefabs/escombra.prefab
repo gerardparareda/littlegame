@@ -14,6 +14,10 @@ GameObject:
   - component: {fileID: 1044326225403753882}
   - component: {fileID: 450373177972130274}
   - component: {fileID: 4317960415923260907}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 2096465491565050039}
+>>>>>>> dev
   m_Layer: 10
   m_Name: escombra
   m_TagString: Untagged
@@ -128,3 +132,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: a5944df932b7fb64f85434e4e7116ffe, type: 3}
+<<<<<<< HEAD
+=======
+--- !u!114 &2096465491565050039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391661513087403156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 1, b: 0.095299006, a: 0}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+>>>>>>> dev

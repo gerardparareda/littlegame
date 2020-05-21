@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
     private bool facingLeft = false;
     public PlayerAnimationController playerAnimController; //Reference to the controller of the animations
 
+    GameObject hoveredGameObject;
+
+    Ray ray;
+    RaycastHit hit;
+
 
     void Start()
     {
@@ -64,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = -2f;
         }
+/*<<<<<<< HEAD
 
         // Movement code
         Vector3 move = transform.right * movement.x + transform.forward * movement.z;
@@ -77,6 +83,24 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+=======*/
+
+        // Movement code
+        Vector3 move = transform.right * movement.x + transform.forward * movement.z;
+        controller.Move(move * moveSpeed * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+                
+        // Jump code
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        ray = cam.ScreenPointToRay(Input.mousePosition);
+
 
         // On mouse left click
         if (Input.GetMouseButtonDown(0))
@@ -84,6 +108,7 @@ public class PlayerController : MonoBehaviour
             // Create a ray
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
 
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100, interactableMask))
@@ -105,9 +130,7 @@ public class PlayerController : MonoBehaviour
         // On mouse right click
         if (Input.GetMouseButtonDown(1))
         {
-            // Create a ray
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+
 
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100, interactableMask))
@@ -125,8 +148,31 @@ public class PlayerController : MonoBehaviour
                         interactable.Interact();
                     }
                 }
+                
             }
-        }     
+        }
+
+        if (Physics.Raycast(ray, out hit, 100, interactableMask))
+        {
+            if (hit.collider.gameObject.GetComponent<Outline>() != null && hoveredGameObject != hit.collider.gameObject)
+            {
+                if (hoveredGameObject != null)
+                {
+                    hoveredGameObject.GetComponent<Outline>().Deselect();
+                    hoveredGameObject = null;
+                }
+                hoveredGameObject = hit.collider.gameObject;
+                hoveredGameObject.GetComponent<Outline>().Select();
+            }
+        }
+        else
+        {
+            if (hoveredGameObject != null)
+            {
+                hoveredGameObject.GetComponent<Outline>().Deselect();
+                hoveredGameObject = null;
+            }
+        }
     }
 
     public void setUsingItem(Item item)
