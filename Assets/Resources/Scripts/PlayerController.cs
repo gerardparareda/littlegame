@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
                     {
                         interactable.Hit();
                     }
+
                 }
             }
         }
