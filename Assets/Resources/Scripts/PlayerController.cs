@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(Input.GetAxis("Vertical"), 0.0f, - Input.GetAxis("Horizontal"));
     }
 
-    /*private void Animate()
+    private void Animate()
     {
 
         // If movement is to the left flip texture container to the left
@@ -169,9 +169,9 @@ public class PlayerController : MonoBehaviour
             animator.setCurrentAnimation(0);
 
         }
-    }*/
+    }
 
-    private void Animate()
+    /*private void Animate()
     {
 
         //facingLeft = movement.z != 0 ? movement.z > 0 : facingLeft; // Only if moving update facingLeft
@@ -230,7 +230,7 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("Idle");
             }
         }
-        if (!isGrounded) playerAnimController.JumpAnimation();*/
+        if (!isGrounded) playerAnimController.JumpAnimation();
 
         //isGrounded = true;
         //Debug.Log("Velocity: " + movement);
@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         if (!isGrounded) playerAnimController.JumpAnimation();
-    }
+    }*/
 
 
 }

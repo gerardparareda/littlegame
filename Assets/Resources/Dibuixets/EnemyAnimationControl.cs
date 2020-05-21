@@ -18,7 +18,7 @@ public class EnemyAnimationControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         time += Time.deltaTime;
 
@@ -41,7 +41,7 @@ public class EnemyAnimationControl : MonoBehaviour
             Debug.Log("FallDown!");
             FallDown();
         }
-    }
+    }*/
 
     public void AnimDamage()
     {
