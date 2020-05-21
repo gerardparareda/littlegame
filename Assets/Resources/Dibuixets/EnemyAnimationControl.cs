@@ -7,9 +7,14 @@ public class EnemyAnimationControl : MonoBehaviour
     public Animator parentAnimator;
     public Animator childAnimator;
 
+    public bool facingLeft;
+    public PlayerState enemyState;
+
     private float time = 0f;
     private bool damaged = false;
     private bool damaged2 = false;
+
+    public enum PlayerState { idle, walking, attacking, falling, takingDamage };
     
     // Start is called before the first frame update
     void Start()
@@ -45,12 +50,31 @@ public class EnemyAnimationControl : MonoBehaviour
 
     public void AnimDamage()
     {
+        if (enemyState == PlayerState.takingDamage) return;
         childAnimator.SetTrigger("New Trigger");
         parentAnimator.SetTrigger("damage_parent");
+        enemyState = PlayerState.idle;
     }
 
     public void FallDown()
     {
+        if (enemyState == PlayerState.falling) return;
         childAnimator.SetTrigger("fall_down");
+        enemyState = PlayerState.falling;
+    }
+
+    public void AnimWalk()
+    {
+        if (enemyState == PlayerState.walking) return;
+        childAnimator.SetTrigger("walk");
+        enemyState = PlayerState.walking;
+
+    }
+     
+    public void AnimKick()
+    {
+        if (enemyState == PlayerState.attacking) return;
+        childAnimator.SetTrigger("kick");
+        enemyState = PlayerState.attacking;
     }
 }
