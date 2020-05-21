@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
 
     PlayerAnimator animator;
+    Transform textureContainer;
+
+    public bool playerEnabled;
 
     GameObject hoveredGameObject;
 
@@ -43,7 +46,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
         animator = transform.GetChild(0).GetComponent<PlayerAnimator>();
+        textureContainer = transform.GetChild(0);
     }
 
     
@@ -52,14 +57,15 @@ public class PlayerController : MonoBehaviour
         // Getting horizontal and vertical axis for movement
         ProcessInputs();
         Animate();
+            
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask | interactableMask);
 
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0){
+        if (isGrounded && velocity.y < 0)
+        {
             velocity.y = -2f;
         }
 
-        // New movement code
+        // Movement code
         Vector3 move = transform.right * movement.x + transform.forward * movement.z;
         controller.Move(move * moveSpeed * Time.deltaTime);
 
@@ -82,13 +88,13 @@ public class PlayerController : MonoBehaviour
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100, interactableMask))
             {
-                
+
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
                     float distance = Vector3.Distance(transform.position, interactable.transform.position);
-                    
-                    if(distance < interactable.radius)
+
+                    if (distance < interactable.radius)
                     {
                         interactable.Hit();
                     }
@@ -104,18 +110,18 @@ public class PlayerController : MonoBehaviour
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100, interactableMask))
             {
-                
+
                 // Get the interactable object
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
 
-                if(interactable != null)
+                if (interactable != null)
                 {
                     float distance = Vector3.Distance(transform.position, interactable.transform.position);
                     if (distance < interactable.radius)
                     {
                         // Interact with object
                         interactable.Interact();
-                    } 
+                    }
                 }
 
                 
@@ -156,11 +162,21 @@ public class PlayerController : MonoBehaviour
 
     private void Animate()
     {
-        if (movement.z > 0)
+
+        // If movement is to the left flip texture container to the left
+        if (movement.z > 0 && textureContainer.localScale.x > 0)
         {
-            animator.setCurrentAnimation(1);
-        } else if (movement.z < 0) {
+            textureContainer.localScale = new Vector3(textureContainer.localScale.x * -1.0f, textureContainer.localScale.y, textureContainer.localScale.z);
+        }
+        else if (movement.z < 0 && textureContainer.localScale.x < 0)
+        {
+            textureContainer.localScale = new Vector3(textureContainer.localScale.x * -1.0f, textureContainer.localScale.y, textureContainer.localScale.z);
+        }
+        // If movement is left or right
+        if ((movement.z > 0.3f || movement.x > 0.3f || movement.z < -0.3f || movement.x < -0.3f) && isGrounded)
+        {
             animator.setCurrentAnimation(2);
+
         }
         else if (velocity.y > 0)
         {
@@ -176,5 +192,6 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
 
 }

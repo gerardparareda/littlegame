@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,7 @@ public class Inventory : MonoBehaviour
     public bool clickedOption;
     public Slider waterSlider;
 
-    public int space = 2;
+    public int space = 12;
 
     public List<Item> items = new List<Item>();
     InventorySlot usedSlot;

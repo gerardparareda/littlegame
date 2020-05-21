@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
         if (distance <= lookRadius)
         {
             agent.SetDestination(target.position);
+            FaceTarget();
         }
         
         if (distance <= agent.stoppingDistance)
@@ -37,15 +38,20 @@ public class EnemyController : MonoBehaviour
                 combat.Attack(targetStats);
             }
           
-            FaceTarget();
+            
         }
     }
 
     void FaceTarget ()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        float direction = (target.position.z - transform.position.z);
+        if (direction < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        } else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
     private void OnDrawGizmosSelected()
