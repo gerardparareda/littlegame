@@ -166,7 +166,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void IdleAnimation()
     {
-        if (playerState == PlayerState.idle) return;
+        //if (playerState == PlayerState.idle) return;
         if (facingLeft) IdleLeftAnimation();
         else IdleRightAnimation();
         playerState = PlayerState.idle;

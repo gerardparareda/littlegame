@@ -9,6 +9,7 @@ public class EnemyAnimationControl : MonoBehaviour
 
     public bool facingLeft;
     public PlayerState enemyState;
+    private float elapsedTime = 0;
 
     private float time = 0f;
     private bool damaged = false;
@@ -50,11 +51,14 @@ public class EnemyAnimationControl : MonoBehaviour
 
     public void SetFacingLeft(bool isFacingLeft)
     {
+        Debug.Log("elapsed " + elapsedTime);
         if (facingLeft != isFacingLeft)
         {
+            //if (elapsedTime < 0.1f) return;
             facingLeft = isFacingLeft;
             UpdateFacing();
             Debug.Log("Changed Facing");
+            elapsedTime = 0;
         }
     }
 
@@ -70,6 +74,7 @@ public class EnemyAnimationControl : MonoBehaviour
         childAnimator.SetTrigger("New Trigger");
         parentAnimator.SetTrigger("damage_parent");
         enemyState = PlayerState.idle;
+        elapsedTime += Time.deltaTime;
     }
 
     public void FallDown()
@@ -77,6 +82,7 @@ public class EnemyAnimationControl : MonoBehaviour
         if (enemyState == PlayerState.falling) return;
         childAnimator.SetTrigger("fall_down");
         enemyState = PlayerState.falling;
+        elapsedTime += Time.deltaTime;
     }
 
     public void AnimWalk()
@@ -84,6 +90,7 @@ public class EnemyAnimationControl : MonoBehaviour
         if (enemyState == PlayerState.walking) return;
         childAnimator.SetTrigger("walk");
         enemyState = PlayerState.walking;
+        elapsedTime += Time.deltaTime;
 
     }
 
@@ -92,6 +99,7 @@ public class EnemyAnimationControl : MonoBehaviour
         if (enemyState == PlayerState.idle) return;
         childAnimator.SetTrigger("idle");
         enemyState = PlayerState.idle;
+        elapsedTime += Time.deltaTime;
 
     }
 
@@ -100,5 +108,6 @@ public class EnemyAnimationControl : MonoBehaviour
         if (enemyState == PlayerState.attacking) return;
         childAnimator.SetTrigger("kick");
         //enemyState = PlayerState.attacking;
+        elapsedTime += Time.deltaTime;
     }
 }
