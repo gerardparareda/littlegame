@@ -28,6 +28,10 @@ public class ItemDestroy : Interactable
     public override void Hit()
     {
         base.Hit();
+        if (gameManager == null)
+        {
+            gameManager = GameManager.instance;
+        }
         if (gameManager.player.GetComponent<PlayerController>().usingItem.name == "Martell")
         {
             ps.Stop();
