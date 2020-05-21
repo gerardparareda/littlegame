@@ -8,6 +8,7 @@ public class CharacterCombat : MonoBehaviour
     CharacterStats myStats;
     public float attackSpeed = 1f;
     private float attackCooldown = 0f;
+    EnemyAnimator enemyAnimator;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class CharacterCombat : MonoBehaviour
             targetStats.TakeDamage(myStats.damage.GetValue());
             attackCooldown = 1f / attackSpeed;
         }
-        
+
     }
   
 }
