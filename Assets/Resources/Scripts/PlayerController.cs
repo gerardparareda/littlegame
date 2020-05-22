@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
         // On mouse left click
         if (Input.GetMouseButtonDown(0))
         {
+            Physics.Raycast(ray, out hit, 100);
+            Debug.Log(hit.collider.gameObject.name);
 
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100, interactableMask))
@@ -106,6 +108,9 @@ public class PlayerController : MonoBehaviour
         // On mouse right click
         if (Input.GetMouseButtonDown(1))
         {
+
+            Physics.Raycast(ray, out hit, 100);
+            Debug.Log(hit.collider.gameObject.name);
 
             // If the ray hits
             if (Physics.Raycast(ray, out hit, 100, interactableMask))

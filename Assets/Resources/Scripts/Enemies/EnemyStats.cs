@@ -44,7 +44,8 @@ public class EnemyStats : CharacterStats
         
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        GetComponent<NavMeshAgent>().enabled = false;
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
