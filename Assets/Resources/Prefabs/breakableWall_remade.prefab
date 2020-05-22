@@ -5439,7 +5439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0.105882354, a: 1}
+  outlineColor: {r: 0, g: 1, b: 0.105882354, a: 0}
   outlineWidth: 1
   precomputeOutline: 0
   bakeKeys: []
@@ -5458,4 +5458,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1.5
   life: 6
-  destroyedVersion: {fileID: 7025903615059811805}
+  destroyedVersion: {fileID: 7025903615059811805, guid: fe1992a7e26c0d045b7deaa36e807086,
+    type: 3}
