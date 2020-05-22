@@ -66,7 +66,7 @@ public class EnemyAnimator : MonoBehaviour
             animationParts
         );
 
-      
+
 
         animationParts = new AnimationPart[take_damage.Length];
         for (int i = 0; i < take_damage.Length; i++)
@@ -74,7 +74,7 @@ public class EnemyAnimator : MonoBehaviour
             animationParts[i] = new AnimationPart(take_damage[i], 100);
         }
 
-        take_damage_anim = new Animation (
+        take_damage_anim = new Animation(
             playerMat,
             animationParts
         );
@@ -116,7 +116,7 @@ public class EnemyAnimator : MonoBehaviour
 
         }
     }
-    
+
 
     void Update()
     {
@@ -146,9 +146,9 @@ public class EnemyAnimator : MonoBehaviour
 
         public void PlayAnimation(float deltaTime)
         {
-            currentTime += deltaTime*1000; //convert seconds to miliseconds
+            currentTime += deltaTime * 1000; //convert seconds to miliseconds
             playerMat.mainTexture = textures[currentFrame].texture;
-            if(currentTime > textures[currentFrame].duration)
+            if (currentTime > textures[currentFrame].duration)
             {
                 currentFrame++;
                 if (currentFrame == textures.Count)
