@@ -32,7 +32,7 @@ public class QuestGiver : NPC
             CheckQuest();
         } else
         {
-            DialogueSystem.Instance.AddNewDialogue(afterCompleted, name);
+            DialogueSystem.Instance.AddNewDialogue(afterCompleted, name, Picture);
         }
     }
 
@@ -53,13 +53,13 @@ public class QuestGiver : NPC
             Quest.DeliverObjects();
             Helped = true;
             AssignedQuest = false;
-            DialogueSystem.Instance.AddNewDialogue(completedMission, name);
+            DialogueSystem.Instance.AddNewDialogue(completedMission, name, Picture);
             //bool itemPickedUp = Inventory.instance.Remove(item);
 
         }
         else
         {
-            DialogueSystem.Instance.AddNewDialogue(whileNoCompleted, name);
+            DialogueSystem.Instance.AddNewDialogue(whileNoCompleted, name, Picture);
         }
     }
 }

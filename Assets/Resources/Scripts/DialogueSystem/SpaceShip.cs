@@ -47,7 +47,7 @@ public class SpaceShip : NPC
             case 0: 
                 if (!caseActive)
                 {
-                    DialogueSystem.Instance.AddNewDialogue(firstOfAll, name);
+                    DialogueSystem.Instance.AddNewDialogue(firstOfAll, name, Picture);
                     caseActive = true;
                     Quest = (Quest)quests.AddComponent(System.Type.GetType(questType));
                 } else
@@ -87,15 +87,15 @@ public class SpaceShip : NPC
             if (Stage == 0)
             {
                 part1.gameObject.SetActive(true);
-                DialogueSystem.Instance.AddNewDialogue(completed1, name);
+                DialogueSystem.Instance.AddNewDialogue(completed1, name, Picture);
             }   else if (Stage == 1)
             {
                 part2.gameObject.SetActive(true);
-                DialogueSystem.Instance.AddNewDialogue(completed2, name);
+                DialogueSystem.Instance.AddNewDialogue(completed2, name, Picture);
             } else
             {
                 part3.gameObject.SetActive(true);
-                DialogueSystem.Instance.AddNewDialogue(completed, name);
+                DialogueSystem.Instance.AddNewDialogue(completed, name, Picture);
             }
 
             Stage += 1;
@@ -105,7 +105,7 @@ public class SpaceShip : NPC
         }
         else
         {
-            DialogueSystem.Instance.AddNewDialogue(whileNoCompleted, name);
+            DialogueSystem.Instance.AddNewDialogue(whileNoCompleted, name, Picture);
         }
     }
 }
