@@ -224,10 +224,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6071530236927519812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00d7e7dc4314bb44aa05a4873a0d5d25, type: 3}
+  m_Script: {fileID: 11500000, guid: fb6b9c39133eb934482bc7eb40351c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 1
+  scene: 0
   transition: {fileID: 8999299824715382747}
   transitionTime: 1
 --- !u!1 &6833319901424260750

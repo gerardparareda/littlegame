@@ -8,7 +8,7 @@ public class Mainmenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Remade");
+        SceneManager.LoadScene(1);
     }
 
 

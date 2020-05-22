@@ -5,7 +5,7 @@ using UnityEngine;
 public class Nau : Quest
 {
     // Start is called before the first frame update
-    public string ItemName = "Tetra brick";
+    public string ItemName = "Space Ship Part";
     public string Explanation = "La nau no pot engegar si no està completa";
     public int CurrentAmount = 0;
     public int RequiredAmount = 1;

@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Start menu.unity
     guid: 7ce85dae1ff08fa4e82a460f0c326c7b
   - enabled: 1
-    path: Assets/Scenes/Remade.unity
-    guid: 84446be91a821444e994704a2165a250
+    path: Assets/Scenes/Remade R.unity
+    guid: 56f980841bf06f147af156c66504e935
   m_configObjects: {}
