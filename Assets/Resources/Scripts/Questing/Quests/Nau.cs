@@ -6,7 +6,7 @@ public class Nau : Quest
 {
     // Start is called before the first frame update
     public string ItemName = "Space Ship Part";
-    public string Explanation = "La nau no pot engegar si no està completa";
+    public string Explanation = "Spaceship cannot launch if it isn't complete";
     public int CurrentAmount = 0;
     public int RequiredAmount = 1;
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class Nau : Quest
     {
         Debug.Log("Ultimate slayer assigned");
         QuestName = "NAU 101";
-        Description = "La nau no pot engegar si no està completa";
+        Description = "Spaceship cannot launch if it isn't complete";
 
         //ItemReward = "Destral";
 

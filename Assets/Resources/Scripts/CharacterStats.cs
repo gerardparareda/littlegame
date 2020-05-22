@@ -15,7 +15,7 @@ public class CharacterStats : MonoBehaviour
 
     private void Awake()
     {
-        CurrentHealth = MaxHealth;        
+        CurrentHealth = MaxHealth;
     }
 
     private void Update()
@@ -25,7 +25,7 @@ public class CharacterStats : MonoBehaviour
             TakeDamage(10);
         }*/
     }
-    public void TakeDamage (int damage)
+    public virtual void TakeDamage(int damage)
     {
         damage -= armor.GetValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
@@ -48,7 +48,7 @@ public class CharacterStats : MonoBehaviour
         healthBar.fillAmount = a;
     }
 
-    public virtual void Die ()
+    public virtual void Die()
     {
         //Die in some way
         Debug.Log(transform.name + " died.");

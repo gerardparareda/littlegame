@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 001000100010f2275637f65727365637
+<<<<<<< HEAD
+guid: 7aeb272962771204c8f32a09ae6ce57d
+=======
+guid: dca1be6d6e6f8e440a6249726fa39873
+>>>>>>> arnau-dev
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
