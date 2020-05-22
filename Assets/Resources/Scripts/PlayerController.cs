@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
                 if (interactable != null)
                 {
                     float distance = Vector3.Distance(transform.position, interactable.transform.position);
-
+                    Debug.Log("Distance: " + distance);
                     if (distance < interactable.radius)
                     {
                         interactable.Hit();
