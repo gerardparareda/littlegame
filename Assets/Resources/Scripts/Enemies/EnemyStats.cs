@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.AI;
 public class EnemyStats : CharacterStats
 {
     public delegate void DeathEventHandler(string name);
@@ -22,9 +22,10 @@ public class EnemyStats : CharacterStats
             onEnemyDeath(gameObject.name);
         }
         EnemyAnim.FallDown();
+        StartCoroutine(WaitToDie());
         //WaitToDie();
         //Add ragdoll efect
-        //Destroy(gameObject);
+        
     }
 
     public override void TakeDamage(int damage)
@@ -40,11 +41,12 @@ public class EnemyStats : CharacterStats
     {
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
+        
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
-
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
+
 }
