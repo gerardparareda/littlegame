@@ -28,6 +28,11 @@ public class SpaceShip : NPC
 
     private Quest Quest { get; set; }
 
+    // Spaceship animations
+    public Animator partBaix;
+    public Animator partMig;
+    public Animator partAlt;
+
 
     public void Awake()
     {
@@ -68,8 +73,17 @@ public class SpaceShip : NPC
             case 3:
                 if (Helped)
                 {
+
                     Helped = false;
                     Stage = 4;
+
+                    partAlt.SetTrigger("enlairar");
+                    partMig.SetTrigger("enlairar");
+                    partBaix.SetTrigger("enlairar");
+
+
+
+
                 }
                 break;
                 
